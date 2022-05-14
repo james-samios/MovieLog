@@ -17,12 +17,13 @@ class IMDBConnector {
         guard let url = URL(string: "\(endpoint)\(query)") else { fatalError() }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMmUwMzQ0NGMyMzdjYjc3OWUyZGIwODQwN2QwOGU5ZSIsInN1YiI6IjYyN2EwYjliYTdlMzYzMDA5YzM1MDNkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.U7KqW62oCJqZE_r7rwrW9E_Ca2OqHUfbfv8lcXHxov4", forHTTPHeaderField: "Authorization") // Authentication bearer token for authenticating with TheMovieDB's API.
+        request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMmUwMzQ0NGMyMzdjYjc3OWUyZGIwODQwN2QwOGU5ZSIsInN1YiI6IjYyN2EwYjliYTdlMzYzMDA5YzM1MDNkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.U7KqW62oCJqZE_r7rwrW9E_Ca2OqHUfbfv8lcXHxov4", forHTTPHeaderField: "Authorization") // Authentication bearer token for connection with TheMovieDB's API.
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
             if let error = error {
-                print("Unable to fetch data: \(error)")
+                print("Unable to fetch data: \(error)") // this can happen if the user has no internet connection, etc. 
+                return
             }
             
             guard let response = response as? HTTPURLResponse,
