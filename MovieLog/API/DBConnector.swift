@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftyJSON
+import SwiftUI
 
 class DBConnector {
     
@@ -71,6 +72,61 @@ class DBConnector {
             print("Latest movies from API: \(movies)")
             callback(movies)
         })
+    }
+    
+    func getFavouriteMovies() -> [Movie]{
+        let defaults = UserDefaults.standard
+        if let savedArrayData = defaults.value(forKey: "favourites") as? Data{
+            if let array = try? PropertyListDecoder().decode(Array<Movie>.self, from: savedArrayData) {
+                return array
+            } else {
+                return []
+            }
+        }else{
+            return []
+        }
+    }
+    
+    
+    func toggleFavourite(mode: Bool, movie: Movie){
+        //Call this function from the favourite button and pass in a bool value to determine the state of the button
+        if mode {
+            addFavouriteMovie(newMovie: movie)
+        }
+        else {
+            removeFavouriteMovie(newMovie: movie)
+        }
+    }
+    
+    func addFavouriteMovie(newMovie: Movie){
+        let defaults = UserDefaults.standard
+        var newList = getFavouriteMovies()
+        for movie in newList {
+            if(newMovie.id == movie.id){
+                //Return if that movie is already favourited
+                return;
+            }
+        }
+        
+        //Add the movie to the favourites list
+        newList.append(newMovie)
+        
+        defaults.removeObject(forKey: "favourites")
+        defaults.set(try? PropertyListEncoder().encode(newList), forKey: "favourites")
+    }
+    
+    func removeFavouriteMovie(newMovie: Movie){
+        let defaults = UserDefaults.standard
+        var newList = getFavouriteMovies()
+        for (index, movie) in newList.enumerated() {
+            if(newMovie.id == movie.id){
+                newList.remove(at: index)
+                //Remove the movie from the listdi
+            }
+        }
+        //Reset defaults
+        defaults.removeObject(forKey: "favourites")
+        defaults.set(try? PropertyListEncoder().encode(newList), forKey: "favourites")
     }
     
 }
