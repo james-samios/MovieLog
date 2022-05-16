@@ -12,7 +12,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        print("ARRAY: ")
+        print(IMDBConnector.instance.getPopularMovies())
+//        print("IRON: ")
+//       print(IMDBConnector.instance.searchForMovies(search: "Iron"));
         // Do any additional setup after loading the view.
     }
     
