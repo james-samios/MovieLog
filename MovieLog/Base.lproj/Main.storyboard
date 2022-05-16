@@ -461,10 +461,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="field:" destination="TzG-Ke-Kvj" eventType="editingDidEnd" id="Lwk-0K-jL2"/>
-                                    <action selector="h:" destination="TzG-Ke-Kvj" eventType="editingDidEnd" id="SDe-dP-vTO"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="utD-tW-0Bv"/>
@@ -498,7 +494,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDP-1H-O7D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="TzG-Ke-Kvj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="505.79710144927537" y="1317.8571428571429"/>
         </scene>
@@ -517,7 +512,7 @@
                                 <rect key="frame" x="0.0" y="270.5" width="414" height="625.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="150" id="NvX-us-tAA" customClass="MovieTableViewCell" customModule="_0_MoviesApp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="150" id="NvX-us-tAA" customClass="ViewCell" customModule="MovieLog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NvX-us-tAA" id="xcC-Ik-uGD">
@@ -578,11 +573,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.18889944889999999" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="imgPoster" destination="5Cr-fE-Qg2" id="sSm-OZ-bc4"/>
-                                            <outlet property="lblCategories" destination="idW-NT-eCp" id="b7w-Hu-8yL"/>
-                                            <outlet property="lblRating" destination="mTT-bl-iWz" id="8Q1-Dz-wIt"/>
-                                            <outlet property="lblSummary" destination="EGJ-HX-knM" id="Cgs-xt-ItP"/>
-                                            <outlet property="lblTitle" destination="zsV-kk-mwJ" id="kvq-PW-x1b"/>
+                                            <outlet property="imgPoster" destination="5Cr-fE-Qg2" id="y6q-ne-iem"/>
+                                            <outlet property="lblCategories" destination="idW-NT-eCp" id="pCL-nG-VIF"/>
+                                            <outlet property="lblRating" destination="mTT-bl-iWz" id="Twe-Ic-1L0"/>
+                                            <outlet property="lblSummary" destination="EGJ-HX-knM" id="9vO-uT-SRg"/>
+                                            <outlet property="lblTitle" destination="zsV-kk-mwJ" id="StE-TZ-czL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -608,10 +603,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="field:" destination="TzG-Ke-Kvj" eventType="editingDidEnd" id="cJM-bc-lWc"/>
-                                    <action selector="h:" destination="TzG-Ke-Kvj" eventType="editingDidEnd" id="j6h-6B-58F"/>
-                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="E6R-8a-wuW"/>
@@ -644,6 +635,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="meU-Vp-4WJ"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Vxf-Vh-thI" id="22r-Mw-Lrs"/>
+                        <outlet property="table" destination="GzY-7O-e6v" id="sxE-3o-gGv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fyb-t8-V6y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

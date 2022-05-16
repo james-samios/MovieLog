@@ -6,20 +6,21 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-class IMDBConnector {
+class DBConnector {
     
-    static let instance = IMDBConnector() // Static reference of our API for access across the app.
+    static let instance = DBConnector() // Static reference of our API for access across the app.
     
-    private let endpoint = "https://api.themoviedb.org/3/"
+    private let endpoint = "https://api.themoviedb.org/4/"
     
-    private func get(query: String, callback: @escaping ([String: Any]) -> Void) {
+    private func get(query: String, callback: @escaping ([Movie]) -> Void) {
         guard let url = URL(string: "\(endpoint)\(query)") else { fatalError() }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMmUwMzQ0NGMyMzdjYjc3OWUyZGIwODQwN2QwOGU5ZSIsInN1YiI6IjYyN2EwYjliYTdlMzYzMDA5YzM1MDNkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.U7KqW62oCJqZE_r7rwrW9E_Ca2OqHUfbfv8lcXHxov4", forHTTPHeaderField: "Authorization") // Authentication bearer token for connection with TheMovieDB's API.
         
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+        URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
             if let error = error {
                 print("Unable to fetch data: \(error)") // this can happen if the user has no internet connection, etc. 
@@ -33,31 +34,35 @@ class IMDBConnector {
             }
             
             if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        callback(json)
+                if let json = try? JSON(data: data) {
+                    var movies: [Movie] = []
+                    for encodedMovie in json["results"].arrayValue {
+                        if let movie = try? JSONDecoder().decode(Movie.self, from: encodedMovie.rawData()) {
+                            movies.append(movie)
+                        }
                     }
-                } catch let error as NSError {
-                    print("Unable to convert data to JSON. \(error)")
+                    callback(movies)
+                } else {
+                    callback([])
                 }
             }
-        })
-        task.resume()
+          }).resume()
     }
     
-    func searchForMovies(search: String) -> [Movie] {
-        var movies: [Movie] = []
-        get(query: "search/movies?query=\(search)", callback: {
-            (data) in
-            if let results = data["results"] as? [Data] {
-                for encodedMovie in results {
-                    if let movie = try? JSONDecoder().decode(Movie.self, from: encodedMovie) {
-                        movies.append(movie)
-                    }
-                }
-            }
+    
+    
+    func searchForMovies(search: String, callback: @escaping ([Movie]) -> Void) {
+        get(query: "search/movie?query=\(search)", callback: {
+            movies in
+            callback(movies)
         })
-        return movies
+    }
+    
+    func getPopularMovies(callback: @escaping ([Movie]) -> Void) {
+        get(query: "discover/movie?sort_by=popularity.desc", callback: {
+           movies in
+           callback(movies)
+       })
     }
     
 }
