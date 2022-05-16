@@ -33,9 +33,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         if (!(searchBar.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)) {
             DBConnector.instance.searchForMovies(search: searchBar.text!, callback: {
                 apiMovies in
-                print(apiMovies)
                 self.movies = apiMovies
-                print("Now reloading table data")
                 DispatchQueue.main.async {
                     self.table.reloadData()
                 }

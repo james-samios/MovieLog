@@ -12,7 +12,7 @@ class DBConnector {
     
     static let instance = DBConnector() // Static reference of our API for access across the app.
     
-    private let endpoint = "https://api.themoviedb.org/4/"
+    private let endpoint = "https://api.themoviedb.org/3/"
     
     private func get(query: String, callback: @escaping ([Movie]) -> Void) {
         guard let url = URL(string: "\(endpoint)\(query)") else { fatalError() }
@@ -63,6 +63,14 @@ class DBConnector {
            movies in
            callback(movies)
        })
+    }
+    
+    func getLatestMovies(callback: @escaping ([Movie]) -> Void) {
+        get(query: "movie/now_playing", callback: {
+            movies in
+            print("Latest movies from API: \(movies)")
+            callback(movies)
+        })
     }
     
 }

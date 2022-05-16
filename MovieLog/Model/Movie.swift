@@ -26,11 +26,14 @@ struct Movie: Decodable {
     
     func getFormattedReleaseDate() -> String {
         let split = release_date.split(separator: "-")
+        guard split.indices.contains(2) else { return "N/A" }
         return "\(split[2])/\(split[1])/\(split[0])"
+
     }
     
     func getReleaseYear() -> String {
         let split = release_date.split(separator: "-")
+        guard split.indices.contains(0) else { return "N/A" }
         return "\(split[0])"
     }
 }
