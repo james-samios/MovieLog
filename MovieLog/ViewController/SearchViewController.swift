@@ -70,7 +70,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         // Updated the UI for this Cell
         let score = movies[indexPath.row]
         
-        cell.lblTitle.text = score.title
+        cell.lblTitle.text = "\(score.title) (\(score.getReleaseYear()))"
         cell.lblRating.text = String(score.vote_average)
         cell.lblSummary.text = score.overview
         cell.lblCategories.text = "TODO"

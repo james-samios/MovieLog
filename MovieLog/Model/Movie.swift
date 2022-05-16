@@ -28,4 +28,9 @@ struct Movie: Decodable {
         let split = release_date.split(separator: "-")
         return "\(split[2])/\(split[1])/\(split[0])"
     }
+    
+    func getReleaseYear() -> String {
+        let split = release_date.split(separator: "-")
+        return "\(split[0])"
+    }
 }
