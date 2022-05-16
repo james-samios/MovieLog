@@ -40,10 +40,20 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "seenMovieController") as? seenMovieController {
+            //vc.poster = UIImage(named: logData[indexPath.row])
+            vc.currentTitle = logData[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
-            
         
+        
+        
+    }
+    
+    @IBAction func goToWatchlist(_sender: UIButton) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "watchlistController") as? watchlistController {
+            //vc.poster = UIImage(named: logData[indexPath.row])
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }
