@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -22,7 +23,6 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         
         searchBar.addTarget(self, action: #selector(onTextChange(_:)), for: .editingChanged)
         searchBar.delegate = self
-    
 
         // Set its data source to this class.
         table.dataSource = self
@@ -74,7 +74,29 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         cell.lblRating.text = String(score.vote_average)
         cell.lblSummary.text = score.overview
         cell.lblCategories.text = "TODO"
-        cell.imgPoster = UIImageView()
+        
+        let posterView = cell.imgPoster!
+        
+        // Load the image. This is the only time it will need to happen, as it'll get cached for later use.
+        let poster = score.getPosterUrl()
+        if (poster.isEmpty) {
+            // unavailable image to be set here.
+            return cell
+        }
+        let url = URL(string: score.getPosterUrl())
+        let processor = DownsamplingImageProcessor(size: posterView.bounds.size)
+        posterView.kf.indicatorType = .activity
+        posterView.kf.setImage(
+            with: url,
+            //placeholder: UIImage(named: "placeholderImage"),
+            options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ])
+        
+        cell.imgPoster = posterView
         
         // Return the cell to TableView
         return cell;

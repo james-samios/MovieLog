@@ -18,7 +18,7 @@ struct Movie: Decodable {
     let adult: Bool
     let release_date: String
     let original_language: String
-    let genre_ids: [Int] 
+    let genre_ids: [Int]
     
     func getPosterUrl() -> String {
         return "https://image.tmdb.org/t/p/original/\(poster_path)"
