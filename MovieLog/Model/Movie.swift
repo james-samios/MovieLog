@@ -16,11 +16,16 @@ struct Movie: Decodable {
     let vote_count: Int
     let poster_path: String
     let adult: Bool
-    let release_date: Date // yy mm dd
+    let release_date: String
     let original_language: String
-    let genre_ids: [Int] // 
+    let genre_ids: [Int] 
     
     func getPosterUrl() -> String {
         return "https://image.tmdb.org/t/p/original/\(poster_path)"
+    }
+    
+    func getFormattedReleaseDate() -> String {
+        let split = release_date.split(separator: "-")
+        return "\(split[2])/\(split[1])/\(split[0])"
     }
 }
