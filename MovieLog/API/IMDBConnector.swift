@@ -36,6 +36,9 @@ class IMDBConnector {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                         callback(json)
+//                        print("json");
+//                        print(json)
+                        
                     }
                 } catch let error as NSError {
                     print("Unable to convert data to JSON. \(error)")
@@ -58,6 +61,25 @@ class IMDBConnector {
             }
         })
         return movies
+    }
+    
+    func getPopularMovies() -> [Movie]{
+
+        var popularMovies: [Movie] = []
+         get(query: "/discover/movie?sort_by=popularity.desc", callback: {
+            (data) in
+            if let results = data["results"] as? [Data] {
+                for encodedMovie in results {
+                    if let movie = try? JSONDecoder().decode(Movie.self, from: encodedMovie) {
+                        popularMovies.append(movie)
+                        print("movie")
+                        print(movie)
+                    }
+                }
+            }
+        })
+        sleep(1);
+        return popularMovies
     }
     
 }
