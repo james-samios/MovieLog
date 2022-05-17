@@ -15,7 +15,6 @@
 		1A49E1BD282F85B300F35C07 /* LatestMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A49E1BC282F85B300F35C07 /* LatestMoviesTableViewCell.swift */; };
 		1AC7751D2821044A00FEF92A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC7751C2821044A00FEF92A /* AppDelegate.swift */; };
 		1AC7751F2821044A00FEF92A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC7751E2821044A00FEF92A /* SceneDelegate.swift */; };
-		1AC775262821044B00FEF92A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AC775252821044B00FEF92A /* Assets.xcassets */; };
 		1AC775292821044B00FEF92A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AC775272821044B00FEF92A /* LaunchScreen.storyboard */; };
 		1AC775342821044C00FEF92A /* MovieLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC775332821044C00FEF92A /* MovieLogTests.swift */; };
 		1AC7753E2821044C00FEF92A /* MovieLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC7753D2821044C00FEF92A /* MovieLogUITests.swift */; };
@@ -30,6 +29,13 @@
 		DB7D69C02831FCA50095766F /* watchlistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D69BF2831FCA50095766F /* watchlistController.swift */; };
 		DB7D69C22831FDC40095766F /* watchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7D69C12831FDC40095766F /* watchlistTableViewCell.swift */; };
 		DB7D69C5283214D60095766F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7D69C3283214D60095766F /* Main.storyboard */; };
+		DF4DBB8F283341EC008BACFE /* final.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4DBB8E283341EC008BACFE /* final.png */; };
+		DF4DBB912833496C008BACFE /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4DBB902833496C008BACFE /* background.png */; };
+		DF4DBB97283355D4008BACFE /* horror.png in Resources */ = {isa = PBXBuildFile; fileRef = DF4DBB92283355D3008BACFE /* horror.png */; };
+		DF4DBB98283355D4008BACFE /* comedy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DF4DBB93283355D3008BACFE /* comedy.jpg */; };
+		DF4DBB99283355D4008BACFE /* fantasy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DF4DBB94283355D4008BACFE /* fantasy.jpg */; };
+		DF4DBB9A283355D4008BACFE /* kids.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DF4DBB95283355D4008BACFE /* kids.jpg */; };
+		DF4DBB9B283355D4008BACFE /* romance.webp in Resources */ = {isa = PBXBuildFile; fileRef = DF4DBB96283355D4008BACFE /* romance.webp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +65,6 @@
 		1AC775192821044A00FEF92A /* MovieLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC7751C2821044A00FEF92A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AC7751E2821044A00FEF92A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1AC775252821044B00FEF92A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AC775282821044B00FEF92A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1AC7752A2821044B00FEF92A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AC7752F2821044C00FEF92A /* MovieLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +80,13 @@
 		DB7D69BF2831FCA50095766F /* watchlistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchlistController.swift; sourceTree = "<group>"; };
 		DB7D69C12831FDC40095766F /* watchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchlistTableViewCell.swift; sourceTree = "<group>"; };
 		DB7D69C4283214D60095766F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DF4DBB8E283341EC008BACFE /* final.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = final.png; sourceTree = "<group>"; };
+		DF4DBB902833496C008BACFE /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		DF4DBB92283355D3008BACFE /* horror.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horror.png; sourceTree = "<group>"; };
+		DF4DBB93283355D3008BACFE /* comedy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = comedy.jpg; sourceTree = "<group>"; };
+		DF4DBB94283355D4008BACFE /* fantasy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fantasy.jpg; sourceTree = "<group>"; };
+		DF4DBB95283355D4008BACFE /* kids.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kids.jpg; sourceTree = "<group>"; };
+		DF4DBB96283355D4008BACFE /* romance.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = romance.webp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +154,6 @@
 				1AC9A5E52828C49300A1B35A /* ViewController */,
 				1AC7751C2821044A00FEF92A /* AppDelegate.swift */,
 				1AC7751E2821044A00FEF92A /* SceneDelegate.swift */,
-				1AC775252821044B00FEF92A /* Assets.xcassets */,
 				DB7D69C3283214D60095766F /* Main.storyboard */,
 				1AC775272821044B00FEF92A /* LaunchScreen.storyboard */,
 				1AC7752A2821044B00FEF92A /* Info.plist */,
@@ -188,6 +199,13 @@
 		1AC9A5E62828C4B800A1B35A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				DF4DBB8E283341EC008BACFE /* final.png */,
+				DF4DBB92283355D3008BACFE /* horror.png */,
+				DF4DBB93283355D3008BACFE /* comedy.jpg */,
+				DF4DBB96283355D4008BACFE /* romance.webp */,
+				DF4DBB94283355D4008BACFE /* fantasy.jpg */,
+				DF4DBB95283355D4008BACFE /* kids.jpg */,
+				DF4DBB902833496C008BACFE /* background.png */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -319,9 +337,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF4DBB99283355D4008BACFE /* fantasy.jpg in Resources */,
+				DF4DBB8F283341EC008BACFE /* final.png in Resources */,
+				DF4DBB9A283355D4008BACFE /* kids.jpg in Resources */,
+				DF4DBB9B283355D4008BACFE /* romance.webp in Resources */,
+				DF4DBB912833496C008BACFE /* background.png in Resources */,
+				DF4DBB98283355D4008BACFE /* comedy.jpg in Resources */,
 				DB7D69C5283214D60095766F /* Main.storyboard in Resources */,
 				1AC775292821044B00FEF92A /* LaunchScreen.storyboard in Resources */,
-				1AC775262821044B00FEF92A /* Assets.xcassets in Resources */,
+				DF4DBB97283355D4008BACFE /* horror.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
