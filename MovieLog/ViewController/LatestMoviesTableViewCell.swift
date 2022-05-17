@@ -45,7 +45,6 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         
         let posterView = cell.posterImg!
         guard movies.indices.contains(indexPath.row) else {
-            
             posterView.kf.indicatorType = .activity
             cell.posterImg = posterView
             return cell
