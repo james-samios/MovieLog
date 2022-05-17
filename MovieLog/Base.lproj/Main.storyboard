@@ -281,7 +281,7 @@
                                 <color key="separatorColor" red="0.21776121849999999" green="0.1125912443" blue="0.22656953329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favouriteCell" rowHeight="164" id="60r-Xz-UYa" customClass="favouriteCell" customModule="MovieLog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favouriteCell" rowHeight="164" id="60r-Xz-UYa" customClass="FavouriteViewCell" customModule="MovieLog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="413" height="164"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="60r-Xz-UYa" id="FkG-Ij-hc7">
@@ -351,6 +351,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.99047457898608748" green="0.9836081937763429" blue="0.96300903814710892" alpha="0.17000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="imgPoster" destination="Qb0-47-QsW" id="ERp-7v-YKJ"/>
+                                            <outlet property="lblGenre" destination="LpQ-1t-ify" id="qmf-fl-Kq0"/>
+                                            <outlet property="lblRating" destination="Wnn-XL-NmB" id="SIe-c4-8Dz"/>
+                                            <outlet property="lblSummary" destination="y2g-Yn-QCz" id="oel-OY-Sas"/>
+                                            <outlet property="lblTitle" destination="mqf-0p-KAl" id="h7j-hV-k8a"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -396,7 +403,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Favourites" id="N8G-kE-pq7"/>
                     <connections>
-                        <outlet property="favouriteTableView" destination="mGH-t7-cuk" id="DZm-Cj-KKQ"/>
+                        <outlet property="favouriteTableView" destination="mGH-t7-cuk" id="MH9-Qf-Uoc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDP-1H-O7D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
