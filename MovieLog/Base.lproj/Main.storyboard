@@ -167,8 +167,8 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b6u-Bw-gru">
                                                     <rect key="frame" x="10" y="0.0" width="404" height="171"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uQO-i4-1BI">
-                                                        <size key="itemSize" width="140" height="170"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uQO-i4-1BI">
+                                                        <size key="itemSize" width="120" height="170"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -181,20 +181,18 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="110" height="160"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JJO-Vb-NEU">
-                                                                        <rect key="frame" x="-13" y="0.0" width="136" height="160"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anchorman" translatesAutoresizingMaskIntoConstraints="NO" id="JJO-Vb-NEU">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="110" height="160"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="136" id="11W-5p-YCc"/>
-                                                                            <constraint firstAttribute="height" constant="160" id="JK6-KZ-Dxd"/>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="136" id="NYq-U9-xua"/>
+                                                                            <constraint firstAttribute="width" constant="110" id="11W-5p-YCc"/>
+                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="NYq-U9-xua"/>
+                                                                            <constraint firstAttribute="height" constant="160" id="a5x-lG-ti3"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="bottom" secondItem="JJO-Vb-NEU" secondAttribute="bottom" id="Kdq-VS-BHP"/>
-                                                                    <constraint firstItem="JJO-Vb-NEU" firstAttribute="top" secondItem="1eD-QC-yd2" secondAttribute="top" id="hSc-bH-gco"/>
-                                                                    <constraint firstItem="JJO-Vb-NEU" firstAttribute="centerY" secondItem="1eD-QC-yd2" secondAttribute="centerY" id="hok-aL-8RH"/>
-                                                                    <constraint firstItem="JJO-Vb-NEU" firstAttribute="centerX" secondItem="1eD-QC-yd2" secondAttribute="centerX" id="zJy-e7-aXH"/>
+                                                                    <constraint firstItem="JJO-Vb-NEU" firstAttribute="centerY" secondItem="1eD-QC-yd2" secondAttribute="centerY" id="MxC-3x-iun"/>
+                                                                    <constraint firstItem="JJO-Vb-NEU" firstAttribute="centerX" secondItem="1eD-QC-yd2" secondAttribute="centerX" id="vCY-Fr-5pp"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="110" height="160"/>
