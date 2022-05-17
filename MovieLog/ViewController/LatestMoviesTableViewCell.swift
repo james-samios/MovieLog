@@ -45,7 +45,6 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         
         let posterView = cell.posterImg!
         guard movies.indices.contains(indexPath.row) else {
-            
             posterView.kf.indicatorType = .activity
             cell.posterImg = posterView
             return cell
@@ -76,7 +75,7 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 110, height: 160)
+        return CGSize(width: 110, height: 400)
     }
 }
 

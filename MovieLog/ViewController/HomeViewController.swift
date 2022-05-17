@@ -10,7 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet var latestMovies: UITableView!
-    @IBOutlet var recommendedMovies: UITableView!
+   
     
     let latestMoviesSource = LatestMovieSource()
     
@@ -20,7 +20,11 @@ class HomeViewController: UIViewController {
         
         self.latestMovies.dataSource = self.latestMoviesSource
     }
+      
+
 }
+
+
 
 class LatestMovieSource: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -39,7 +43,7 @@ class LatestMovieSource: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
+        return 180
     }
     
 }
