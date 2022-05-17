@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qqn-rh-KQo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qqn-rh-KQo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -614,7 +614,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1L-yH-M4M">
-                                                    <rect key="frame" x="101" y="40" width="283" height="17"/>
+                                                    <rect key="frame" x="101" y="40" width="283" height="16"/>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Blurb">
@@ -802,6 +802,14 @@
                                     <constraint firstAttribute="width" secondItem="BWw-c4-4p2" secondAttribute="height" multiplier="9:16" id="Num-MD-72y"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oLp-cf-Lv2">
+                                <rect key="frame" x="329" y="45.5" width="50" height="47.5"/>
+                                <color key="tintColor" red="0.50081449368484154" green="0.50257482850521229" blue="0.50785583296632453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Lrg-V4-OTB"/>
+                                    <constraint firstAttribute="height" constant="50" id="VJD-0r-K1T"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6nZ-FE-739"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -810,9 +818,11 @@
                             <constraint firstItem="BWw-c4-4p2" firstAttribute="top" secondItem="6nZ-FE-739" secondAttribute="top" constant="20" id="2kJ-x4-WxC"/>
                             <constraint firstItem="g3b-hn-mO4" firstAttribute="top" secondItem="FEx-aD-EVp" secondAttribute="bottom" constant="30" id="8Bf-q2-kXr"/>
                             <constraint firstItem="GJy-I6-7dR" firstAttribute="top" secondItem="g3b-hn-mO4" secondAttribute="top" id="AMP-9a-AIH"/>
+                            <constraint firstItem="oLp-cf-Lv2" firstAttribute="top" secondItem="6nZ-FE-739" secondAttribute="top" id="FOY-2w-fHL"/>
                             <constraint firstItem="FEx-aD-EVp" firstAttribute="leading" secondItem="6nZ-FE-739" secondAttribute="leading" constant="20" id="G4b-Ua-eWs"/>
                             <constraint firstItem="GJy-I6-7dR" firstAttribute="trailing" secondItem="ggb-zv-cHh" secondAttribute="trailing" id="Pvt-Bp-WxY"/>
                             <constraint firstItem="FEx-aD-EVp" firstAttribute="top" secondItem="h0D-Ks-UHG" secondAttribute="bottom" constant="10" id="Rsg-G0-Abv"/>
+                            <constraint firstItem="6nZ-FE-739" firstAttribute="trailing" secondItem="oLp-cf-Lv2" secondAttribute="trailing" constant="35" id="SHI-W9-6ld"/>
                             <constraint firstItem="6nZ-FE-739" firstAttribute="trailing" secondItem="FEx-aD-EVp" secondAttribute="trailing" constant="20" id="ZYh-Lp-n5n"/>
                             <constraint firstItem="h0D-Ks-UHG" firstAttribute="centerY" secondItem="Mhb-qR-wkY" secondAttribute="centerY" id="aO9-HN-gcA"/>
                             <constraint firstItem="ggb-zv-cHh" firstAttribute="top" secondItem="BWw-c4-4p2" secondAttribute="bottom" constant="20" id="bem-5a-7YY"/>
@@ -840,7 +850,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bnX-Lx-LY7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="2012"/>
+            <point key="canvasLocation" x="911.59420289855075" y="2011.6071428571427"/>
         </scene>
         <!--notSeenMovieController-->
         <scene sceneID="eoY-eL-oTy">
@@ -1117,7 +1127,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5H-0g-F31">
-                                                    <rect key="frame" x="101" y="40" width="283" height="17"/>
+                                                    <rect key="frame" x="101" y="40" width="283" height="16"/>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Blurb">
