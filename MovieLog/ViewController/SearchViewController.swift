@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Kingfisher
 
 class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
@@ -19,13 +18,17 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+        let dismissKbTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        dismissKbTap.cancelsTouchesInView = false
+        view.addGestureRecognizer(dismissKbTap)
         
         searchBar.addTarget(self, action: #selector(onTextChange(_:)), for: .editingChanged)
         searchBar.delegate = self
 
         // Set its data source to this class.
         table.dataSource = self
+        table.delegate = self
+    
     }
     
     /// Search for movies when text field is modified, and update the table cells.
@@ -77,9 +80,16 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         
         // Return the cell to TableView
         return cell;
-        
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Table row at \(indexPath) selected")
+        tableView.deselectRow(at: indexPath, animated: true)
+        let score = movies[indexPath.row]
+        let edit = self.storyboard?.instantiateViewController(withIdentifier: "editMovieController") as! editMovieController
+        edit.setMovie(movie: score)
+        self.navigationController?.pushViewController(edit, animated: true)
+    }
 }
 
 class ViewCell: UITableViewCell {
