@@ -24,7 +24,11 @@ class LogTableViewCell: UITableViewCell {
         lblYear.text = movie.getReleaseYear()
         lblReview.text = loggedMovie.summary
         lblRating.text = loggedMovie.rating
-        lblGenre.text = "GENRE"
+        guard movie.getGenres()[0] == nil
+        else {
+            lblGenre.text = movie.getGenres()[0]
+            return
+        }
         
         
     }
