@@ -18,11 +18,12 @@ class editMovieController: UIViewController {
     @IBOutlet var movieComment: UITextField!
     
     //var currentPoster: UIImageView
+    var currentMovie: LoggedMovie? = nil
     var currentTitle: String = ""
     var currentBlurb: String = ""
     var currentRating: String = ""
     var currentComment: String = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

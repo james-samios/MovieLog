@@ -18,6 +18,7 @@ class seenMovieController: UIViewController {
     @IBOutlet var movieComment: UILabel!
     @IBOutlet var edit: UIButton!
     
+    var currentMovie: LoggedMovie? = nil
     var currentPoster = UIImage()
     var currentBlurb : String = ""
     var currentTitle : String = ""

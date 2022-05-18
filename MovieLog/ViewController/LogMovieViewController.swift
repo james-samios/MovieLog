@@ -73,6 +73,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
 //            vc.poster = UIImage(named: logData[indexPath.row])
             let loggedMovie = LoggedMovies[indexPath.row]
             let movie = loggedMovie.movie;
+            vc.currentMovie = loggedMovie;
             vc.currentTitle = movie.title
             vc.currentComment = loggedMovie.summary
             vc.currentRating = loggedMovie.rating
