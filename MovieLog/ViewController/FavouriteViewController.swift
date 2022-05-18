@@ -15,6 +15,13 @@ class FavouriteViewController: UIViewController {
     var favouriteMovies: [Movie] = []
     @IBOutlet var favouriteTableView: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.favouriteMovies = DBConnector.instance.getFavouriteMovies()
+        self.favouriteTableView.reloadData()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.favouriteMovies = DBConnector.instance.getFavouriteMovies()

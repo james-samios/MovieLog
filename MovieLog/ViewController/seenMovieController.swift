@@ -39,7 +39,17 @@ class seenMovieController: UIViewController {
         movieRating.text = currentRating
         movieComment.text = currentComment
         moviePoster = movie!.setPoster(image: moviePoster)
+        if(movie != nil){
+            onScreenLoad()
+        }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if(movie != nil){
+            onScreenLoad()
+        }
     }
     
     func onScreenLoad() {
@@ -50,12 +60,10 @@ class seenMovieController: UIViewController {
                 isFavourited = true;
             }
         }
-        if(isFavourited){
-            likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
+        if(!isFavourited){
             likeButton.tintColor = UIColor.lightGray
         }
         else{
-            likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
             likeButton.tintColor = UIColor.systemPink
         }
     }
@@ -75,13 +83,13 @@ class seenMovieController: UIViewController {
                 DBConnector.instance.toggleFavourite(mode: isFavourited, movie: movie!)
                 print("=========PRINTED========")
                 if(isFavourited){
-                    likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
+//                    likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
                     likeButton.tintColor = UIColor.lightGray
                     print("=========No Longer Favourited========")
                 }
                 else{
                     print("=========Favourited========")
-                    likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
+//                    likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
                     likeButton.tintColor = UIColor.systemPink
                 }
                 
