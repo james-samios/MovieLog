@@ -71,30 +71,9 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         cell.lblTitle.text = "\(score.title) (\(score.getReleaseYear()))"
         cell.lblRating.text = String(score.vote_average)
         cell.lblSummary.text = score.overview
-        cell.lblCategories.text = "TODO"
-        
-        let posterView = cell.imgPoster!
-        
-        // Load the image. This is the only time it will need to happen, as it'll get cached for later use.
-        let poster = score.getPosterUrl()
-        if (poster.isEmpty) {
-            // unavailable image to be set here.
-            return cell
-        }
-        let url = URL(string: score.getPosterUrl())
-        let processor = DownsamplingImageProcessor(size: posterView.bounds.size)
-        posterView.kf.indicatorType = .activity
-        posterView.kf.setImage(
-            with: url,
-            //placeholder: UIImage(named: "placeholderImage"),
-            options: [
-                .processor(processor),
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
-        
-        cell.imgPoster = posterView
+        cell.imgPoster = score.setPoster(image: cell.imgPoster)
+        guard score.getGenres().indices.contains(0) else { return cell }
+        cell.lblCategories.text = score.getGenres()[0]
         
         // Return the cell to TableView
         return cell;

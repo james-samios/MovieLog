@@ -15,8 +15,9 @@ class DBConnector {
     
     private let endpoint = "https://api.themoviedb.org/3/"
     
-    private func get(query: String, callback: @escaping ([Movie]) -> Void) {
-        guard let url = URL(string: "\(endpoint)\(query)") else { fatalError() }
+    private func get(query: String, callback: @escaping (JSON?) -> Void) {
+        let finalUrl = "\(endpoint)\(query)"
+        guard let url = URL(string: finalUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { fatalError() }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMmUwMzQ0NGMyMzdjYjc3OWUyZGIwODQwN2QwOGU5ZSIsInN1YiI6IjYyN2EwYjliYTdlMzYzMDA5YzM1MDNkZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.U7KqW62oCJqZE_r7rwrW9E_Ca2OqHUfbfv8lcXHxov4", forHTTPHeaderField: "Authorization") // Authentication bearer token for connection with TheMovieDB's API.
@@ -36,40 +37,61 @@ class DBConnector {
             
             if let data = data {
                 if let json = try? JSON(data: data) {
-                    var movies: [Movie] = []
-                    for encodedMovie in json["results"].arrayValue {
-                        if let movie = try? JSONDecoder().decode(Movie.self, from: encodedMovie.rawData()) {
-                            movies.append(movie)
-                        }
-                    }
-                    callback(movies)
+                    callback(json)
                 } else {
-                    callback([])
+                    callback(nil)
                 }
             }
           }).resume()
     }
     
+    func getMovies(query: String, callback: @escaping ([Movie]) -> Void) {
+        get(query: query) { json in
+            if (json == nil) {
+                callback([])
+            } else {
+                var movies: [Movie] = []
+                for encodedMovie in json!["results"].arrayValue {
+                    if let movie = try? JSONDecoder().decode(Movie.self, from: encodedMovie.rawData()) {
+                        movies.append(movie)
+                    }
+                }
+                callback(movies)
+            }
+        }
+    }
     
+    func getGenres(callback: @escaping ([Int: String]) -> Void) {
+        get(query: "genre/movie/list") { json in
+            var genres = [Int: String]()
+            if (json == nil) {
+                callback(genres)
+            } else {
+                for genre in json!["genres"].arrayValue {
+                    genres.updateValue(genre["name"].stringValue, forKey: genre["id"].intValue)
+                }
+                callback(genres)
+            }
+        }
+    }
     
     func searchForMovies(search: String, callback: @escaping ([Movie]) -> Void) {
-        get(query: "search/movie?query=\(search)", callback: {
+        getMovies(query: "search/movie?query=\(search)", callback: {
             movies in
             callback(movies)
         })
     }
     
     func getPopularMovies(callback: @escaping ([Movie]) -> Void) {
-        get(query: "discover/movie?sort_by=popularity.desc", callback: {
+        getMovies(query: "discover/movie?sort_by=popularity.desc", callback: {
            movies in
            callback(movies)
        })
     }
     
     func getLatestMovies(callback: @escaping ([Movie]) -> Void) {
-        get(query: "movie/now_playing", callback: {
+        getMovies(query: "movie/now_playing", callback: {
             movies in
-            print("Latest movies from API: \(movies)")
             callback(movies)
         })
     }

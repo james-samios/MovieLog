@@ -9,10 +9,21 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    static let instance = UIApplication.shared.delegate as! AppDelegate
+    
+    var genres = [Int: String]()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        DBConnector.instance.getGenres(callback: { genres in
+            self.genres = genres
+        })
         return true
+    }
+    
+    func getGenreNameById(id: Int) -> String {
+        return genres[id] ?? "N/A"
     }
 
     // MARK: UISceneSession Lifecycle

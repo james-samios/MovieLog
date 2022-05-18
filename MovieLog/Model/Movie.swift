@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import Kingfisher
 
 struct Movie: Codable {
@@ -38,7 +39,31 @@ struct Movie: Codable {
         return "\(split[0])"
     }
     
-    func getPoster(){
-        
+    func getGenres() -> [String?] {
+        var array: [String?] = []
+        for genre_id in genre_ids {
+            array.append(AppDelegate.instance.getGenreNameById(id: genre_id))
+        }
+        return array
+    }
+    
+    func setPoster(image: UIImageView) -> UIImageView {
+        let poster = getPosterUrl()
+        if (poster.isEmpty) {
+            // unavailable image to be set here.
+            return image
+        }
+        let url = URL(string: poster)
+        let processor = DownsamplingImageProcessor(size: image.bounds.size)
+        image.kf.indicatorType = .activity
+        image.kf.setImage(
+            with: url,
+            options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ])
+        return image
     }
 }
