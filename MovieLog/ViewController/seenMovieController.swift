@@ -31,6 +31,9 @@ class seenMovieController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = movie?.title ?? "Error when loading movie!"
+        
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.toggleFavourite))
         likeButton.addGestureRecognizer(tapGR)
         likeButton.isUserInteractionEnabled = true
