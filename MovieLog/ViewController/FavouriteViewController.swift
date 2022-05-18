@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Kingfisher
 import SwiftUI
 
 
@@ -52,32 +51,10 @@ extension FavouriteViewController: UITableViewDelegate, UITableViewDataSource {
         cell.lblTitle.text = "\(score.title) (\(score.getReleaseYear()))"
         cell.lblRating.text = String(score.vote_average)
         cell.lblSummary.text = score.overview
-        cell.lblGenre.text = "GENRE \(score.genre_ids)"
+        cell.imgPoster = score.setPoster(image: cell.imgPoster)
+        guard score.getGenres().indices.contains(0) else { return cell }
+        cell.lblGenre.text = score.getGenres()[0]
         
-        let posterView = cell.imgPoster!
-        
-        let poster = score.getPosterUrl()
-        if (poster.isEmpty) {
-            // unavailable image to be set here.
-            return cell
-        }
-        let url = URL(string: score.getPosterUrl())
-        let processor = DownsamplingImageProcessor(size: posterView.bounds.size)
-        posterView.kf.indicatorType = .activity
-        posterView.kf.setImage(
-            with: url,
-            //placeholder: UIImage(named: "placeholderImage"),
-            options: [
-                .processor(processor),
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
-        
-        cell.imgPoster = posterView
-//        else {
-//            fatalError("unable to produce favourite list")
-//        }
         return cell
     }
 }

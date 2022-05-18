@@ -47,6 +47,14 @@ struct Movie: Codable {
         return array
     }
     
+    func getFormattedGenres() -> String {
+        var genres = ""
+        for genre in getGenres() {
+            genres = genres + "\(String(describing: genre)), "
+        }
+        return genres.substring(to: genres.lastIndex(of: ",")!)
+    }
+    
     func setPoster(image: UIImageView) -> UIImageView {
         let poster = getPosterUrl()
         if (poster.isEmpty) {
