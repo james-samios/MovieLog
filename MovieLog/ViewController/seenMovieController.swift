@@ -24,12 +24,16 @@ class seenMovieController: UIViewController {
     var currentTitle : String = ""
     var currentRating: String = ""
     var currentComment: String = ""
+    var currentYearGenre: String = ""
     
     
     var movie: Movie? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = movie?.title ?? "Error when loading movie!"
+        
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.toggleFavourite))
         likeButton.addGestureRecognizer(tapGR)
         likeButton.isUserInteractionEnabled = true
@@ -38,8 +42,19 @@ class seenMovieController: UIViewController {
         movieBlurb.text = currentBlurb
         movieRating.text = currentRating
         movieComment.text = currentComment
+        movieYearGenre.text = currentYearGenre
         moviePoster = movie!.setPoster(image: moviePoster)
+        if(movie != nil){
+            onScreenLoad()
+        }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(movie != nil){
+            onScreenLoad()
+        }
     }
     
     func onScreenLoad() {
@@ -50,12 +65,10 @@ class seenMovieController: UIViewController {
                 isFavourited = true;
             }
         }
-        if(isFavourited){
-            likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
+        if(!isFavourited){
             likeButton.tintColor = UIColor.lightGray
         }
         else{
-            likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
             likeButton.tintColor = UIColor.systemPink
         }
     }
@@ -75,13 +88,11 @@ class seenMovieController: UIViewController {
                 DBConnector.instance.toggleFavourite(mode: isFavourited, movie: movie!)
                 print("=========PRINTED========")
                 if(isFavourited){
-                    likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
                     likeButton.tintColor = UIColor.lightGray
                     print("=========No Longer Favourited========")
                 }
                 else{
                     print("=========Favourited========")
-                    likeButton.image = likeButton.image?.withRenderingMode(.alwaysTemplate)
                     likeButton.tintColor = UIColor.systemPink
                 }
                 

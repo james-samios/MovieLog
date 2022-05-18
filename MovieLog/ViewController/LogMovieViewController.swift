@@ -10,13 +10,21 @@ import UIKit
 import Kingfisher
 
 
-class LogMovieViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LogMovieViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
    
     @IBOutlet var logTableView: UITableView!
     
     var LoggedMovies:[LoggedMovie] = []
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        print("=====LOGTABLE=======")
+        logTableView.delegate = self
+        logTableView.dataSource = self
+        self.LoggedMovies = DBConnector.instance.getLoggedMovies()
+        logTableView.reloadData()
+    }
       
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +64,12 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
             vc.currentComment = loggedMovie.summary
             vc.currentRating = loggedMovie.rating
             vc.currentBlurb = movie.overview!
+            
+            if(movie.getGenres()[0] != nil && movie.getReleaseYear() != nil){
+                vc.currentYearGenre = "\(movie.getReleaseYear()) - \(movie.getGenres()[0]!)"
+            }
+//            vc.likeButton
+//            vc.onScreenLoad()
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
@@ -67,6 +81,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
         if let vc = storyboard?.instantiateViewController(withIdentifier: "watchlistController") as? watchlistController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
     
 }
