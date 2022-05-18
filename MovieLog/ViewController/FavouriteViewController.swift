@@ -13,27 +13,14 @@ import SwiftUI
 class FavouriteViewController: UIViewController {
    
     var favouriteMovies: [Movie] = []
-    var testMovies: [Movie] = []
     @IBOutlet var favouriteTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //THIS CAN ALL BE DELETED WHEN ADD FAVOURITE BUTTON IS IN
-        DBConnector.instance.getPopularMovies(callback: {
-            apiMovies in
-            self.testMovies = apiMovies
-            for movie in self.testMovies {
-                DBConnector.instance.addFavouriteMovie(newMovie: movie)
-            }
-            self.favouriteMovies = DBConnector.instance.getFavouriteMovies()
-            DispatchQueue.main.async {
-                self.favouriteTableView.reloadData()
-            }
-        })
-        //TO HERE
-        
+        self.favouriteMovies = DBConnector.instance.getFavouriteMovies()
+        self.favouriteTableView.reloadData()
     }
-
+    
 
 }
 
@@ -41,7 +28,6 @@ class FavouriteViewController: UIViewController {
 
 extension FavouriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print("=========COUNT======\(favouriteMovies.count)")
         return favouriteMovies.count
     }
     

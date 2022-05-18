@@ -25,8 +25,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
         logTableView.delegate = self
         logTableView.dataSource = self
         
-        let movie:LoggedMovie = LoggedMovie(movie: DBConnector.instance.getFavouriteMovies()[0], summary: "Sonic Is a movie", rating: "5/10")
-        DBConnector.instance.logNewMovie(newMovie: movie)
+
         self.LoggedMovies = DBConnector.instance.getLoggedMovies()
         
     }
@@ -42,27 +41,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.setLogCell(loggedMovie: movie)
         
-        let posterView = cell.imgPoster!
-        
-        let poster = movie.movie.getPosterUrl()
-        if (poster.isEmpty) {
-            // unavailable image to be set here.
-            return cell
-        }
-        let url = URL(string: movie.movie.getPosterUrl())
-        let processor = DownsamplingImageProcessor(size: posterView.bounds.size)
-        posterView.kf.indicatorType = .activity
-        posterView.kf.setImage(
-            with: url,
-            //placeholder: UIImage(named: "placeholderImage"),
-            options: [
-                .processor(processor),
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
-        
-        cell.imgPoster = posterView
+        cell.imgPoster = movie.movie.setPoster(image: cell.imgPoster)
         
         return cell
     }
@@ -71,12 +50,12 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
         if let vc = storyboard?.instantiateViewController(withIdentifier: "seenMovieController") as? seenMovieController {
 //            vc.poster = UIImage(named: logData[indexPath.row])
             let loggedMovie = LoggedMovies[indexPath.row]
-            let movie = loggedMovie.movie;
-            vc.currentMovie = loggedMovie;
+            let movie = loggedMovie.movie
+            vc.movie = movie
             vc.currentTitle = movie.title
             vc.currentComment = loggedMovie.summary
             vc.currentRating = loggedMovie.rating
-            vc.currentBlurb = "Placeholder Blurb"
+            vc.currentBlurb = movie.overview!
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
@@ -86,7 +65,6 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func goToWatchlist(_sender: UIButton) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "watchlistController") as? watchlistController {
-            //vc.poster = UIImage(named: logData[indexPath.row])
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
