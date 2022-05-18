@@ -56,12 +56,15 @@ class editMovieController: UIViewController {
     }
     
     @IBAction func saveMovie(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "seenMovieController") as? seenMovieController {
-            //vc.poster = UIImage(named: logData[indexPath.row])
-            vc.currentTitle = movie?.title ?? errorMsg
-            vc.currentBlurb = movie?.overview ?? errorMsg
-            vc.currentRating = movieRating.text!
-            vc.currentComment = movieComment.text!
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "LogMovieViewController") as? LogMovieViewController {
+            if(movie != nil){
+                let newMovie:LoggedMovie = LoggedMovie(movie: movie!, summary: movieComment.text!, rating: movieRating.text!)
+                DBConnector.instance.logNewMovie(newMovie: newMovie)
+            }
+//            vc.currentTitle = movie?.title ?? errorMsg
+//            vc.currentBlurb = movie?.overview ?? errorMsg
+//            vc.currentRating = movieRating.text!
+//            vc.currentComment = movieComment.text!
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

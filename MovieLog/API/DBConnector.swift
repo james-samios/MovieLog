@@ -96,6 +96,9 @@ class DBConnector {
         })
     }
     
+    
+    
+    //======Favourite Movies=======
     func getFavouriteMovies() -> [Movie]{
         let defaults = UserDefaults.standard
         if let savedArrayData = defaults.value(forKey: "favourites") as? Data{
@@ -112,7 +115,7 @@ class DBConnector {
     
     func toggleFavourite(mode: Bool, movie: Movie){
         //Call this function from the favourite button and pass in a bool value to determine the state of the button
-        if mode {
+        if !mode {
             addFavouriteMovie(newMovie: movie)
         }
         else {
@@ -151,4 +154,114 @@ class DBConnector {
         defaults.set(try? PropertyListEncoder().encode(newList), forKey: "favourites")
     }
     
+    //======Logged Movies=======
+    func getLoggedMovies() -> [LoggedMovie]{
+        let defaults = UserDefaults.standard
+        if let savedArrayData = defaults.value(forKey: "logged") as? Data{
+            if let array = try? PropertyListDecoder().decode(Array<LoggedMovie>.self, from: savedArrayData) {
+                return array
+            } else {
+                return []
+            }
+        }else{
+            return []
+        }
+    }
+    
+    func logNewMovie(newMovie: LoggedMovie){
+        let defaults = UserDefaults.standard
+        var newList = getLoggedMovies()
+        for movie in newList {
+            if(newMovie.movie.id == movie.movie.id){
+                //Return if that movie is already logged
+                return;
+            }
+        }
+        
+        let watchList = getWatchList()
+        for movie in watchList {
+            if newMovie.movie.id == movie.id {
+                removeFromWatchList(newMovie: newMovie.movie)
+            }
+        }
+        newList.append(newMovie)
+        
+        defaults.removeObject(forKey: "logged")
+        defaults.set(try? PropertyListEncoder().encode(newList), forKey: "logged")
+    }
+    
+    func removeLoggedMovie(newMovie: LoggedMovie){
+        let defaults = UserDefaults.standard
+        var newList = getLoggedMovies()
+        for (index, movie) in newList.enumerated() {
+            if(newMovie.movie.id == movie.movie.id){
+                newList.remove(at: index)
+            }
+        }
+        //Reset defaults
+        defaults.removeObject(forKey: "favourites")
+        defaults.set(try? PropertyListEncoder().encode(newList), forKey: "favourites")
+    }
+    
+    //======Watch List=======
+    func getWatchList() -> [Movie]{
+        let defaults = UserDefaults.standard
+        if let savedArrayData = defaults.value(forKey: "watchList") as? Data{
+            if let array = try? PropertyListDecoder().decode(Array<Movie>.self, from: savedArrayData) {
+                return array
+            } else {
+                return []
+            }
+        }else{
+            return []
+        }
+    }
+    
+    
+    func toggleWatchList(mode: Bool, movie: Movie){
+        //Call this function from the favourite button and pass in a bool value to determine the state of the button
+        if !mode {
+            addFavouriteMovie(newMovie: movie)
+        }
+        else {
+            removeFavouriteMovie(newMovie: movie)
+        }
+    }
+    
+    func addToWatchList(newMovie: Movie){
+        let defaults = UserDefaults.standard
+        var newList = getFavouriteMovies()
+        for movie in newList {
+            if(newMovie.id == movie.id){
+                //Return if that movie is already in the watch list
+                return;
+            }
+        }
+        
+        //Add the movie to the watch list
+        newList.append(newMovie)
+        
+        defaults.removeObject(forKey: "watchList")
+        defaults.set(try? PropertyListEncoder().encode(newList), forKey: "watchList")
+    }
+    
+    func removeFromWatchList(newMovie: Movie){
+        let defaults = UserDefaults.standard
+        var newList = getFavouriteMovies()
+        for (index, movie) in newList.enumerated() {
+            if(newMovie.id == movie.id){
+                newList.remove(at: index)
+            }
+        }
+        //Reset defaults
+        defaults.removeObject(forKey: "watchList")
+        defaults.set(try? PropertyListEncoder().encode(newList), forKey: "watchList")
+    }
+    
+}
+
+struct LoggedMovie: Codable {
+    var movie: Movie
+    var summary: String
+    var rating: String
 }

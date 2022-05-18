@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qqn-rh-KQo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qqn-rh-KQo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -629,7 +629,7 @@
         <!--Log Movies-->
         <scene sceneID="VPh-nv-ocL">
             <objects>
-                <viewController id="PYc-BM-P24" customClass="LogMovieViewController" customModule="MovieLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogMovieViewController" id="PYc-BM-P24" customClass="LogMovieViewController" customModule="MovieLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eeY-Lv-XkV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -750,8 +750,12 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.99418855917574178" green="0.99418855917574178" blue="0.99418855917574178" alpha="0.17000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="imgPoster" destination="m7f-ZH-TpH" id="pu1-Qf-QbV"/>
+                                            <outlet property="lblGenre" destination="jhV-06-Xq8" id="7dY-6t-eOC"/>
+                                            <outlet property="lblRating" destination="2Rk-rA-NcL" id="YbF-wl-mJe"/>
+                                            <outlet property="lblReview" destination="g1L-yH-M4M" id="HFe-7f-ZSx"/>
+                                            <outlet property="lblYear" destination="l8l-dt-Kqh" id="zVn-X6-A1f"/>
                                             <outlet property="movieName" destination="dLA-6c-QYx" id="sr2-8J-5HJ"/>
-                                            <outlet property="moviePoster" destination="m7f-ZH-TpH" id="mES-dL-bus"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -879,7 +883,7 @@
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oLp-cf-Lv2">
                                 <rect key="frame" x="329" y="45.5" width="50" height="47.5"/>
-                                <color key="tintColor" red="0.50081449368484154" green="0.50257482850521229" blue="0.50785583296632453" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Lrg-V4-OTB"/>
                                     <constraint firstAttribute="height" constant="50" id="VJD-0r-K1T"/>
@@ -915,6 +919,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="edit" destination="GJy-I6-7dR" id="cch-yg-G1f"/>
+                        <outlet property="likeButton" destination="oLp-cf-Lv2" id="Na7-9s-1ih"/>
                         <outlet property="movieBlurb" destination="FEx-aD-EVp" id="ajE-aX-0qP"/>
                         <outlet property="movieComment" destination="LUV-ZC-qX7" id="Sj6-qG-etn"/>
                         <outlet property="moviePoster" destination="BWw-c4-4p2" id="73J-xc-Aab"/>
