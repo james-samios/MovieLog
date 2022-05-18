@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Kingfisher
 
 struct Movie: Codable {
     
@@ -35,5 +36,9 @@ struct Movie: Codable {
         let split = release_date.split(separator: "-")
         guard split.indices.contains(0) else { return "N/A" }
         return "\(split[0])"
+    }
+    
+    func getPoster(){
+        
     }
 }

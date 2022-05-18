@@ -74,6 +74,9 @@ class DBConnector {
         })
     }
     
+    
+    
+    //======Favourite Movies=======
     func getFavouriteMovies() -> [Movie]{
         let defaults = UserDefaults.standard
         if let savedArrayData = defaults.value(forKey: "favourites") as? Data{
@@ -129,4 +132,53 @@ class DBConnector {
         defaults.set(try? PropertyListEncoder().encode(newList), forKey: "favourites")
     }
     
+    //======Logged Movies=======
+    func getLoggedMovies() -> [LoggedMovie]{
+        let defaults = UserDefaults.standard
+        if let savedArrayData = defaults.value(forKey: "logged") as? Data{
+            if let array = try? PropertyListDecoder().decode(Array<LoggedMovie>.self, from: savedArrayData) {
+                return array
+            } else {
+                return []
+            }
+        }else{
+            return []
+        }
+    }
+    
+    func logNewMovie(newMovie: LoggedMovie){
+        let defaults = UserDefaults.standard
+        var newList = getLoggedMovies()
+        for movie in newList {
+            if(newMovie.movie.id == movie.movie.id){
+                //Return if that movie is already logged
+                return;
+            }
+        }
+        newList.append(newMovie)
+        
+        defaults.removeObject(forKey: "logged")
+        defaults.set(try? PropertyListEncoder().encode(newList), forKey: "logged")
+    }
+    
+    func removeLoggedMovie(newMovie: LoggedMovie){
+        let defaults = UserDefaults.standard
+        var newList = getLoggedMovies()
+        for (index, movie) in newList.enumerated() {
+            if(newMovie.movie.id == movie.movie.id){
+                newList.remove(at: index)
+            }
+        }
+        //Reset defaults
+        defaults.removeObject(forKey: "favourites")
+        defaults.set(try? PropertyListEncoder().encode(newList), forKey: "favourites")
+    }
+    
+    
+}
+
+struct LoggedMovie: Codable {
+    var movie: Movie
+    var summary: String
+    var rating: String
 }

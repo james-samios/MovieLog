@@ -750,8 +750,12 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.99418855917574178" green="0.99418855917574178" blue="0.99418855917574178" alpha="0.17000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="imgPoster" destination="m7f-ZH-TpH" id="pu1-Qf-QbV"/>
+                                            <outlet property="lblGenre" destination="jhV-06-Xq8" id="7dY-6t-eOC"/>
+                                            <outlet property="lblRating" destination="2Rk-rA-NcL" id="YbF-wl-mJe"/>
+                                            <outlet property="lblReview" destination="g1L-yH-M4M" id="HFe-7f-ZSx"/>
+                                            <outlet property="lblYear" destination="l8l-dt-Kqh" id="zVn-X6-A1f"/>
                                             <outlet property="movieName" destination="dLA-6c-QYx" id="sr2-8J-5HJ"/>
-                                            <outlet property="moviePoster" destination="m7f-ZH-TpH" id="mES-dL-bus"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
