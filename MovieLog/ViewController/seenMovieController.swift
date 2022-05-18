@@ -25,6 +25,8 @@ class seenMovieController: UIViewController {
     var currentRating: String = ""
     var currentComment: String = ""
     
+    var movie: Movie? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,8 +41,7 @@ class seenMovieController: UIViewController {
     @IBAction func editMovie(_ sender: UIButton) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "editMovieController") as? editMovieController {
             //vc.poster = UIImage(named: logData[indexPath.row])
-            vc.currentTitle = currentTitle
-            vc.currentBlurb = currentBlurb
+            vc.setMovie(movie: movie)
             vc.currentRating = currentRating
             vc.currentComment = currentComment
             self.navigationController?.pushViewController(vc, animated: true)

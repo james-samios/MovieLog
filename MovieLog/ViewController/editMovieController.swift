@@ -17,18 +17,21 @@ class editMovieController: UIViewController {
     @IBOutlet var movieRating: UITextField!
     @IBOutlet var movieComment: UITextField!
     
-    //var currentPoster: UIImageView
-    var currentMovie: LoggedMovie? = nil
-    var currentTitle: String = ""
-    var currentBlurb: String = ""
     var currentRating: String = ""
     var currentComment: String = ""
-
+    
+    var movie: Movie? = nil
+    let errorMsg = "N/A"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movieTitle.text = currentTitle
-        movieBlurb.text = currentBlurb
+        self.title = movie?.title ?? "Error when loading movie!"
+        
+        movieBlurb.text = movie?.overview ?? errorMsg
+        movieYearGenre.text = movie?.getFormattedReleaseDate() ?? errorMsg
+        moviePoster = movie?.setPoster(image: moviePoster)
+        
         if currentRating == "" {
             movieRating.placeholder = "Rating..."
         } else {
@@ -39,13 +42,24 @@ class editMovieController: UIViewController {
         } else {
             movieComment.text = currentComment
         }
+        if (movie == nil) {
+            return
+        }
+        guard movie!.getGenres().indices.contains(0) else { return }
+        movieTitle.text = movie?.getGenres()[0]
+    }
+    
+    func setMovie(movie: Movie?) {
+        if movie != nil {
+            self.movie = movie
+        }
     }
     
     @IBAction func saveMovie(_ sender: UIButton) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "seenMovieController") as? seenMovieController {
             //vc.poster = UIImage(named: logData[indexPath.row])
-            vc.currentTitle = currentTitle
-            vc.currentBlurb = currentBlurb
+            vc.currentTitle = movie?.title ?? errorMsg
+            vc.currentBlurb = movie?.overview ?? errorMsg
             vc.currentRating = movieRating.text!
             vc.currentComment = movieComment.text!
             self.navigationController?.pushViewController(vc, animated: true)
