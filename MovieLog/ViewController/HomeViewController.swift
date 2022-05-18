@@ -11,8 +11,10 @@ class HomeViewController: UIViewController {
     
     @IBOutlet var latestMovies: UITableView!
    
+    @IBOutlet weak var genreMovies: UITableView!
     
     let latestMoviesSource = LatestMovieSource()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,16 @@ class LatestMovieCell: UICollectionViewCell {
     
 }
 
-class RecommendedMovieCell: UICollectionViewCell {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        return cell
+    }
+    
     
 }
