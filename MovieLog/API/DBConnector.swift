@@ -103,7 +103,7 @@ class DBConnector {
         let defaults = UserDefaults.standard
         if let savedArrayData = defaults.value(forKey: "favourites") as? Data{
             if let array = try? PropertyListDecoder().decode(Array<Movie>.self, from: savedArrayData) {
-                return array
+                return array.reversed()
             } else {
                 return []
             }
@@ -159,7 +159,7 @@ class DBConnector {
         let defaults = UserDefaults.standard
         if let savedArrayData = defaults.value(forKey: "logged") as? Data{
             if let array = try? PropertyListDecoder().decode(Array<LoggedMovie>.self, from: savedArrayData) {
-                return array
+                return array.reversed()
             } else {
                 return []
             }

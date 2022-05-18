@@ -64,6 +64,10 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
             vc.currentComment = loggedMovie.summary
             vc.currentRating = loggedMovie.rating
             vc.currentBlurb = movie.overview!
+            
+            if(movie.getGenres()[0] != nil && movie.getReleaseYear() != nil){
+                vc.currentYearGenre = "\(movie.getReleaseYear()) - \(movie.getGenres()[0]!)"
+            }
 //            vc.likeButton
 //            vc.onScreenLoad()
             self.navigationController?.pushViewController(vc, animated: true)
@@ -77,6 +81,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
         if let vc = storyboard?.instantiateViewController(withIdentifier: "watchlistController") as? watchlistController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
     
 }
