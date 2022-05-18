@@ -16,8 +16,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
     
     var LoggedMovies:[LoggedMovie] = []
     
-    //TO BE REPLACED WITH IMDB DATA
-    let logData = ["first", "second", "third", "fourth"]
+    
       
     override func viewDidLoad() {
         super.viewDidLoad()
