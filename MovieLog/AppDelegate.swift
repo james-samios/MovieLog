@@ -13,12 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let instance = UIApplication.shared.delegate as! AppDelegate
     
     var genres = [Int: String]()
+    var sampleMovie: Movie? = nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         DBConnector.instance.getGenres(callback: { genres in
             self.genres = genres
         })
+        
+        self.sampleMovie = Movie(id: 68721, title: "Iron Man 3", overview: "When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.", vote_average: 6.9, vote_count: 19440, poster_path: "/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg", adult: false, release_date: "2013-04-18", original_language: "en", genre_ids: [28, 12, 878])
         return true
     }
     

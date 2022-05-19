@@ -15,14 +15,34 @@ class RecommendedMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate,
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        loadMovies()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList(notification:)), name: NSNotification.Name(rawValue: "loadRecommended"), object: nil)
+    }
+    
+    @objc func loadList(notification: NSNotification) {
+        loadMovies()
+    }
+    
+    private func loadMovies() {
         DBConnector.instance.getRecommendedMovies(callback: {
             movies in
-            self.movies = movies
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+            if (movies.count == 0) {
+                DBConnector.instance.getSimilarMovies(callback: {
+                    similar in
+                    self.movies = similar
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                })
+            } else {
+                self.movies = movies
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
         })
     }
