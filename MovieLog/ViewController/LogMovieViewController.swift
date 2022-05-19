@@ -55,7 +55,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "seenMovieController") as? seenMovieController {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "SeenMovieController") as? SeenMovieController {
 //            vc.poster = UIImage(named: logData[indexPath.row])
             let loggedMovie = LoggedMovies[indexPath.row]
             let movie = loggedMovie.movie
@@ -78,7 +78,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func goToWatchlist(_sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "watchlistController") as? watchlistController {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "WatchlistController") as? WatchlistController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

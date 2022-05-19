@@ -1,5 +1,5 @@
 //
-//  editMovieController.swift
+//  EditMovieController.swift
 //  MovieLog
 //
 //  Created by Rebecca Galletta on 16/5/2022.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class editMovieController: UIViewController {
+class EditMovieController: UIViewController {
     
     @IBOutlet var moviePoster: UIImageView!
     @IBOutlet var movieTitle: UILabel!
