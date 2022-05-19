@@ -65,7 +65,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
             vc.currentRating = loggedMovie.rating
             vc.currentBlurb = movie.overview!
             
-            if(movie.getGenres()[0] != nil && movie.getReleaseYear() != nil){
+            if(movie.getGenres()[0] != nil) {
                 vc.currentYearGenre = "\(movie.getReleaseYear()) - \(movie.getGenres()[0]!)"
             }
 //            vc.likeButton

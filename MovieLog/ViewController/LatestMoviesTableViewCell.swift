@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -50,27 +49,7 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
             return cell
         }
         let score = movies[indexPath.row]
-        
-        
-        // Load the image. This can also retrieve it from cache.
-        let poster = score.getPosterUrl()
-        if (poster.isEmpty) {
-            // unavailable image to be set here.
-            return cell
-        }
-        let url = URL(string: score.getPosterUrl())
-        let processor = DownsamplingImageProcessor(size: posterView.bounds.size)
-        posterView.kf.indicatorType = .activity
-        posterView.kf.setImage(
-            with: url,
-            options: [
-                .processor(processor),
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
-        
-        cell.posterImg = posterView
+        cell.posterImg = score.setPoster(image: cell.posterImg)
         return cell
     }
     
