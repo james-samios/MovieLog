@@ -210,7 +210,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="collectionView" destination="b6u-Bw-gru" id="vPY-m1-xKc"/>
+                                            <outlet property="collectionView" destination="b6u-Bw-gru" id="7Jp-7z-CRb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -302,7 +302,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="collectionView" destination="9j6-yF-EIh" id="pTW-6c-BlA"/>
+                                            <outlet property="collectionView" destination="9j6-yF-EIh" id="VjH-pb-lKv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -342,8 +342,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="fJR-gC-BDY"/>
                     <connections>
-                        <outlet property="latestMovies" destination="eiH-4k-eui" id="e5h-j8-quS"/>
-                        <outlet property="recommendedMovies" destination="n5i-CW-xcl" id="bpe-D9-ZBL"/>
+                        <outlet property="latestMoviesTable" destination="eiH-4k-eui" id="A4P-92-jyE"/>
+                        <outlet property="recommendedMoviesTable" destination="n5i-CW-xcl" id="tHF-em-ck8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzS-N2-UEO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

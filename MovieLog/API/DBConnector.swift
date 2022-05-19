@@ -104,6 +104,14 @@ class DBConnector {
         })
     }
     
+    func getSimilarMovies(callback: @escaping ([Movie]) -> Void) {
+        let movie = getLoggedMovies()[0]
+        getMovies(query: "movie/\(movie.movie.id)/similar", callback: {
+            movies in
+            callback(movies)
+        })
+    }
+    
     //======Favourite Movies=======
     func getFavouriteMovies() -> [Movie]{
         let defaults = UserDefaults.standard
