@@ -46,7 +46,6 @@ struct Movie: Codable {
         }
         return array
     }
-
     
     func setPoster(image: UIImageView) -> UIImageView {
         let poster = getPosterUrl()
