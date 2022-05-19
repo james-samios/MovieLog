@@ -97,6 +97,9 @@ class DBConnector {
     }
     
     func getRecommendedMovies(callback: @escaping ([Movie]) -> Void) {
+        if (!getLoggedMovies().indices.contains(0)) {
+            logNewMovie(newMovie: LoggedMovie(movie: AppDelegate.instance.sampleMovie!, summary: "I really enjoyed this movie. It was great.", rating: "8"))
+        }
         let movie = getLoggedMovies()[0]
         getMovies(query: "movie/\(movie.movie.id)/recommendations", callback: {
             movies in
