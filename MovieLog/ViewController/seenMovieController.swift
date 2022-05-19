@@ -1,5 +1,5 @@
 //
-//  seenMovieController.swift
+//  SeenMovieController.swift
 //  MovieLog
 //
 //  Created by Rebecca Galletta on 15/5/2022.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class seenMovieController: UIViewController {
+class SeenMovieController: UIViewController {
     
     @IBOutlet var moviePoster: UIImageView!
     @IBOutlet var movieTitle: UILabel!
@@ -104,7 +104,7 @@ class seenMovieController: UIViewController {
     }
     
     @IBAction func editMovie(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "editMovieController") as? editMovieController {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "EditMovieController") as? EditMovieController {
             //vc.poster = UIImage(named: logData[indexPath.row])
             vc.setMovie(movie: movie)
             vc.currentRating = currentRating

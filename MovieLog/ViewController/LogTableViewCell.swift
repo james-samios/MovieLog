@@ -12,7 +12,6 @@ class LogTableViewCell: UITableViewCell {
     
     @IBOutlet var imgPoster: UIImageView!
     @IBOutlet var movieName: UILabel!
-    @IBOutlet var lblYear: UILabel!
     @IBOutlet var lblReview: UILabel!
     @IBOutlet var lblRating: UILabel!
     @IBOutlet var lblGenre: UILabel!
@@ -21,7 +20,6 @@ class LogTableViewCell: UITableViewCell {
     func setLogCell(loggedMovie: LoggedMovie) {
         let movie = loggedMovie.movie
         movieName.text = movie.title
-        lblYear.text = movie.getReleaseYear()
         lblReview.text = loggedMovie.summary
         lblRating.text = loggedMovie.rating
         guard movie.getGenres()[0] == nil

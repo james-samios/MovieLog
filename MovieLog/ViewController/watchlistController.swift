@@ -1,5 +1,5 @@
 //
-//  watchlistController.swift
+//  WatchlistController.swift
 //  MovieLog
 //
 //  Created by Rebecca Galletta on 16/5/2022.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class watchlistController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WatchlistController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var watchlistTableView: UITableView!
     
@@ -28,7 +28,7 @@ class watchlistController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movie = watchlist[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "watchlistTableViewCell") as! watchlistTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistTableViewCell") as! WatchlistTableViewCell
         
         cell.setWatchlistCell(movie: movie)
         
@@ -36,7 +36,7 @@ class watchlistController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "seenMovieController") as? seenMovieController {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "SeenMovieController") as? SeenMovieController {
             //vc.poster = UIImage(named: logData[indexPath.row])
             vc.currentTitle = watchlist[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
