@@ -1,13 +1,13 @@
 //
-//  HomeTableViewCell.swift
-//  OtherMovie
+//  RecommendedMoviesTableViewCell.swift
+//  MovieLog
 //
-//  Created by Alexandra Streeton on 11/5/2022.
+//  Created by James Samios on 19/5/2022.
 //
 
 import UIKit
 
-class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class RecommendedMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var collectionView: UICollectionView!
     var movies: [Movie] = []
@@ -18,14 +18,13 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        DBConnector.instance.getLatestMovies(callback: {
+        DBConnector.instance.getRecommendedMovies(callback: {
             movies in
             self.movies = movies
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         })
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,7 +38,7 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestMovieCell", for: indexPath) as! LatestMovieCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recommendedMovieCell", for: indexPath) as! RecommendedMovieCell
         
         
         let posterView = cell.posterImg!
@@ -57,4 +56,5 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         return CGSize(width: 110, height: 400)
     }
 }
+
 

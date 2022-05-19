@@ -96,7 +96,13 @@ class DBConnector {
         })
     }
     
-    
+    func getRecommendedMovies(callback: @escaping ([Movie]) -> Void) {
+        let movie = getLoggedMovies()[0]
+        getMovies(query: "movie/\(movie.movie.id)/recommendations", callback: {
+            movies in
+            callback(movies)
+        })
+    }
     
     //======Favourite Movies=======
     func getFavouriteMovies() -> [Movie]{
@@ -111,7 +117,6 @@ class DBConnector {
             return []
         }
     }
-    
     
     func toggleFavourite(mode: Bool, movie: Movie){
         //Call this function from the favourite button and pass in a bool value to determine the state of the button
