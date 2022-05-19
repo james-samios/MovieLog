@@ -9,19 +9,27 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet var latestMovies: UITableView!
-    @IBOutlet var recommendedMovies: UITableView!
-    
+    @IBOutlet var latestMoviesTable: UITableView!
+    @IBOutlet var recommendedMoviesTable: UITableView!
+
     let latestMoviesSource = LatestMovieSource()
     let recommendedMoviesSource = RecommendedMovieSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        self.latestMovies.dataSource = self.latestMoviesSource
-        self.recommendedMovies.dataSource = self.recommendedMoviesSource
+        self.latestMoviesTable.dataSource = self.latestMoviesSource
+        self.recommendedMoviesTable.dataSource = self.recommendedMoviesSource
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {
+            timer in
+            NotificationCenter.default.post(name: NSNotification.Name("loadRecommended"), object: nil)
+        })
+    }
+
 }
 
 class LatestMovieSource: UIViewController, UITableViewDelegate, UITableViewDataSource {
