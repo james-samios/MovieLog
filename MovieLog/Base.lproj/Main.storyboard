@@ -131,10 +131,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.png" translatesAutoresizingMaskIntoConstraints="NO" id="WID-vc-TSb">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="1227"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGO.png" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-Vy-XIx">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="1027"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="561"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="AVr-Vy-XIx" secondAttribute="height" multiplier="414:613" id="fi9-bB-VtG"/>
                                 </constraints>
@@ -664,7 +664,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wqY-bO-xJT">
-                                <rect key="frame" x="0.0" y="179" width="390" height="582"/>
+                                <rect key="frame" x="0.0" y="176" width="390" height="585"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.21729713680000001" green="0.1128321514" blue="0.22699868679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -770,13 +770,23 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="it3-QQ-aa7">
-                                <rect key="frame" x="30" y="98" width="330" height="31"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Watchlist">
-                                    <backgroundConfiguration key="background" cornerRadius="30"/>
-                                </buttonConfiguration>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="it3-QQ-aa7">
+                                <rect key="frame" x="120" y="98" width="150" height="28"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="5fu-tK-RA0"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Watchlist">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="14" name="Helvetica"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="goToWatchlistWith_sender:" destination="PYc-BM-P24" eventType="touchUpInside" id="T2t-1e-hBf"/>
                                 </connections>
@@ -785,11 +795,8 @@
                         <viewLayoutGuide key="safeArea" id="gGa-RJ-xBU"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gGa-RJ-xBU" firstAttribute="trailing" secondItem="it3-QQ-aa7" secondAttribute="trailing" constant="30" id="0Bi-yg-GKZ"/>
                             <constraint firstItem="it3-QQ-aa7" firstAttribute="centerX" secondItem="eeY-Lv-XkV" secondAttribute="centerX" id="0Rj-re-01z"/>
                             <constraint firstItem="gGa-RJ-xBU" firstAttribute="bottom" secondItem="wqY-bO-xJT" secondAttribute="bottom" id="4IA-lG-RQL"/>
-                            <constraint firstItem="it3-QQ-aa7" firstAttribute="leading" secondItem="gGa-RJ-xBU" secondAttribute="leading" constant="30" id="Mnt-Kp-40U"/>
-                            <constraint firstItem="it3-QQ-aa7" firstAttribute="centerX" secondItem="eeY-Lv-XkV" secondAttribute="centerX" id="NpI-Cw-bpP"/>
                             <constraint firstItem="it3-QQ-aa7" firstAttribute="top" secondItem="gGa-RJ-xBU" secondAttribute="top" constant="10" id="Q2Y-LP-8A1"/>
                             <constraint firstItem="gGa-RJ-xBU" firstAttribute="trailing" secondItem="wqY-bO-xJT" secondAttribute="trailing" id="U0W-OU-syy"/>
                             <constraint firstItem="wqY-bO-xJT" firstAttribute="top" secondItem="it3-QQ-aa7" secondAttribute="bottom" constant="50" id="VKy-lZ-psb"/>
@@ -1010,11 +1017,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UnW-PU-7cD">
-                                <rect key="frame" x="20" y="759" width="350" height="31"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UnW-PU-7cD">
+                                <rect key="frame" x="120" y="764.33333333333337" width="150" height="25.666666666666629"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Lqf-Et-1Oc"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Log Movie">
+                                            <attributes>
+                                                <color key="NSColor" red="0.98289372197987335" green="1" blue="0.97110295635906985" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="12" name="Helvetica"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
                                     <action selector="saveMovie:" destination="RQ2-WY-gSn" eventType="touchUpInside" id="ymg-54-sDA"/>
                                 </connections>
@@ -1034,7 +1053,6 @@
                             <constraint firstItem="BJb-Jl-dfI" firstAttribute="bottom" secondItem="UnW-PU-7cD" secondAttribute="bottom" constant="20" id="47u-uH-7Bd"/>
                             <constraint firstItem="p2U-5z-dik" firstAttribute="centerY" secondItem="PbA-HK-osi" secondAttribute="centerY" id="C8F-o3-Z23"/>
                             <constraint firstItem="x6H-uv-JFP" firstAttribute="leading" secondItem="BJb-Jl-dfI" secondAttribute="leading" constant="20" id="Dsp-jM-Oj3"/>
-                            <constraint firstItem="BJb-Jl-dfI" firstAttribute="trailing" secondItem="UnW-PU-7cD" secondAttribute="trailing" constant="20" id="Evk-kw-HTf"/>
                             <constraint firstItem="BJb-Jl-dfI" firstAttribute="trailing" secondItem="02O-wc-2B4" secondAttribute="trailing" constant="20" id="GRT-us-sXF"/>
                             <constraint firstItem="seF-CI-PR7" firstAttribute="top" secondItem="BJb-Jl-dfI" secondAttribute="top" id="Lm8-Hc-7Yu"/>
                             <constraint firstItem="BJb-Jl-dfI" firstAttribute="trailing" secondItem="KRl-6P-e7P" secondAttribute="trailing" constant="20" id="Lvi-n8-aPy"/>
@@ -1043,10 +1061,10 @@
                             <constraint firstItem="QPz-24-eMI" firstAttribute="centerX" secondItem="PbA-HK-osi" secondAttribute="centerX" id="V3n-2x-08Y"/>
                             <constraint firstItem="BJb-Jl-dfI" firstAttribute="trailing" secondItem="x6H-uv-JFP" secondAttribute="trailing" constant="20" id="WKj-pf-aHG"/>
                             <constraint firstItem="KRl-6P-e7P" firstAttribute="top" secondItem="bd3-ai-o70" secondAttribute="bottom" constant="10" id="Z5k-e7-iTI"/>
-                            <constraint firstItem="UnW-PU-7cD" firstAttribute="leading" secondItem="BJb-Jl-dfI" secondAttribute="leading" constant="20" id="brk-sW-H44"/>
                             <constraint firstItem="02O-wc-2B4" firstAttribute="top" secondItem="QPz-24-eMI" secondAttribute="bottom" constant="20" id="dva-RK-IPh"/>
                             <constraint firstItem="KRl-6P-e7P" firstAttribute="leading" secondItem="p2U-5z-dik" secondAttribute="leading" id="dyb-gF-frc"/>
                             <constraint firstItem="BJb-Jl-dfI" firstAttribute="trailing" secondItem="seF-CI-PR7" secondAttribute="trailing" constant="35" id="eZH-87-epg"/>
+                            <constraint firstItem="UnW-PU-7cD" firstAttribute="centerX" secondItem="PbA-HK-osi" secondAttribute="centerX" id="fgb-ZM-EY6"/>
                             <constraint firstItem="QPz-24-eMI" firstAttribute="top" secondItem="BJb-Jl-dfI" secondAttribute="top" constant="20" id="gxp-xr-b93"/>
                             <constraint firstItem="bd3-ai-o70" firstAttribute="top" secondItem="x6H-uv-JFP" secondAttribute="bottom" constant="20" id="iG0-we-51M"/>
                             <constraint firstItem="02O-wc-2B4" firstAttribute="centerY" secondItem="PbA-HK-osi" secondAttribute="centerY" id="jaw-c3-Ljo"/>
@@ -1086,7 +1104,7 @@
                                 <rect key="frame" x="0.0" y="64" width="390" height="746"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WatchlistTableViewCell" rowHeight="164" id="eC7-A2-wMC" customClass="WatchlistTableViewCell" customModule="MovieLog" customModuleProvider="target">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="WatchlistTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WatchlistTableViewCell" rowHeight="164" id="eC7-A2-wMC" customClass="WatchlistTableViewCell" customModule="MovieLog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="164"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eC7-A2-wMC" id="GlA-9B-cEn">
@@ -1175,8 +1193,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.99418855920000004" green="0.99418855920000004" blue="0.99418855920000004" alpha="0.17000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="movieBlurb" destination="k5H-0g-F31" id="eII-g6-nUW"/>
+                                            <outlet property="movieGenre" destination="Uio-5D-Mz9" id="AbO-CX-54E"/>
                                             <outlet property="movieName" destination="pgQ-IK-gyx" id="4KF-JJ-vUK"/>
                                             <outlet property="moviePoster" destination="kdm-pl-wRF" id="I4b-TY-VlT"/>
+                                            <outlet property="movieRating" destination="Fck-EG-RQ4" id="kYZ-0c-fLc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
