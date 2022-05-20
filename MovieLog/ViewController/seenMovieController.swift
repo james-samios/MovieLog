@@ -59,59 +59,42 @@ class SeenMovieController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(movie != nil){
+            print("=====APPEARED======")
             onScreenLoad()
         }
     }
     
     func onScreenLoad() {
-        var isFavourited : Bool = false;
-        for film in DBConnector.instance.getFavouriteMovies() {
-            print()
-            if film.id == movie?.id{
-                isFavourited = true;
-            }
-        }
+        let isFavourited : Bool = DBConnector.instance.isMovieFavourited(movie: movie!);
         if(!isFavourited){
             likeButton.tintColor = UIColor.lightGray
         }
         else{
             likeButton.tintColor = UIColor.systemPink
         }
+        print("--\(isFavourited)--")
     }
     
     @objc func toggleFavourite(sender: UITapGestureRecognizer){
         if sender.state == .ended {
             
             if(movie != nil){
-                var isFavourited: Bool = false;
-                for film in DBConnector.instance.getFavouriteMovies() {
-                    print()
-                    if film.id == movie?.id{
-                        isFavourited = true;
-                    }
-                }
-                
-                DBConnector.instance.toggleFavourite(mode: isFavourited, movie: movie!)
-                print("=========PRINTED========")
+                let isFavourited: Bool = DBConnector.instance.isMovieFavourited(movie: movie!);
                 if(isFavourited){
                     likeButton.tintColor = UIColor.lightGray
-                    print("=========No Longer Favourited========")
+                    //Unfavorite the movie
                 }
                 else{
-                    print("=========Favourited========")
                     likeButton.tintColor = UIColor.systemPink
                 }
+                DBConnector.instance.toggleFavourite(mode: isFavourited, movie: movie!)
                 
-            }
-            else{
-                print("=========ISNULL========")
             }
         }
     }
     
     @IBAction func editMovie(_ sender: UIButton) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "EditMovieController") as? EditMovieController {
-            //vc.poster = UIImage(named: logData[indexPath.row])
             vc.setMovie(movie: movie)
             vc.currentRating = currentRating
             vc.currentComment = currentComment

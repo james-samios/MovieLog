@@ -67,13 +67,8 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     }
     
     func onScreenLoad() { // Determine state of watchlist button
-        var isSelected : Bool = false;
-        for film in DBConnector.instance.getWatchList() {
-            print()
-            if film.id == movie?.id{
-                isSelected = true;
-            }
-        }
+        let isSelected : Bool = DBConnector.instance.isMovieInWatchlist(movie: movie!);
+       
         if(!isSelected){
             imgWatchlist.tintColor = UIColor.lightGray
         }
@@ -86,22 +81,10 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
         if sender.state == .ended {
             
             if(movie != nil){
-                var isWatched: Bool = false;
-                for film in DBConnector.instance.getWatchList() {
-                    print()
-                    if film.id == movie?.id{
-                        isWatched = true;
-                    }
-                }
+                let isWatched: Bool = DBConnector.instance.isMovieInWatchlist(movie: movie!);
                 
                 DBConnector.instance.toggleWatchList(mode: isWatched, movie: movie!)
-                if(isWatched){
-                    imgWatchlist.tintColor = UIColor.lightGray
-                }
-                else{
-                    imgWatchlist.tintColor = UIColor.systemGreen
-                }
-                
+                imgWatchlist.tintColor = isWatched ? UIColor.lightGray : UIColor.systemGreen
             }
         }
     }
@@ -114,7 +97,6 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveMovie(_ sender: UIButton) {
-//        if let vc = storyboard?.instantiateViewController(withIdentifier: "LogMovieViewController") as? LogMovieViewController {
             if(movie != nil){
                 let newMovie:LoggedMovie = LoggedMovie(movie: movie!, summary: movieComment.text!, rating: movieRating.text!)
                 DBConnector.instance.logNewMovie(newMovie: newMovie)
@@ -122,8 +104,7 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
             _ = navigationController?.popViewController(animated: true)
             tabBarController!.selectedIndex = 3
             
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+            
     }
     
     /// Hide the keyboard when the user taps anywhere outside.

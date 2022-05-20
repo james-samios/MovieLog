@@ -20,6 +20,14 @@ class WatchlistTableViewCell: UITableViewCell {
         print("========CELL============")
         movieName.text = movie.title
         moviePoster = movie.setPoster(image: moviePoster)
+        movieBlurb.text = movie.overview
+        movieRating.text = String(movie.vote_average)
+        guard(movie.getGenres()[0] == nil)
+        else{
+            movieGenre.text = movie.getGenres()[0]
+            return
+        }
+        
     }
     
 }

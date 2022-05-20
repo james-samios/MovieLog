@@ -25,10 +25,6 @@ class WatchlistController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewWillAppear(animated)
         watchlist = DBConnector.instance.getWatchList()
         watchlistTableView.reloadData()
-        
-        print("========APPEARED===========")
-        print("Watchlist\(watchlist)")
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,9 +41,11 @@ class WatchlistController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = watchlist[indexPath.row]
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SeenMovieController") as? SeenMovieController {
-            //vc.poster = UIImage(named: logData[indexPath.row])
-//            vc.currentTitle = watchlist[indexPath.row]
+            vc.setMovie(movie: movie)
+            vc.currentBlurb = movie.overview!
+            vc.currentRating = String(movie.vote_average)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

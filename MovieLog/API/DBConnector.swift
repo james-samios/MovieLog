@@ -170,6 +170,17 @@ class DBConnector {
         defaults.set(try? PropertyListEncoder().encode(newList), forKey: "favourites")
     }
     
+    func isMovieFavourited(movie: Movie) -> Bool {
+        var favourited = false
+        for favouritedMovie in getFavouriteMovies() {
+            if (favouritedMovie.id == movie.id) {
+                favourited = true
+                break
+            }
+        }
+        return favourited
+    }
+    
     //======Logged Movies=======
     func getLoggedMovies() -> [LoggedMovie]{
         let defaults = UserDefaults.standard
@@ -259,7 +270,6 @@ class DBConnector {
         var newList = getWatchList()
         for movie in newList {
             if(newMovie.id == movie.id){
-                //Return if that movie is already in the watch list
                 return;
             }
         }
@@ -273,7 +283,7 @@ class DBConnector {
     
     func removeFromWatchList(newMovie: Movie){
         let defaults = UserDefaults.standard
-        var newList = getFavouriteMovies()
+        var newList = getWatchList()
         for (index, movie) in newList.enumerated() {
             if(newMovie.id == movie.id){
                 newList.remove(at: index)
@@ -284,6 +294,16 @@ class DBConnector {
         defaults.set(try? PropertyListEncoder().encode(newList), forKey: "watchList")
     }
     
+    func isMovieInWatchlist(movie: Movie) -> Bool {
+        var watched = false
+        for watchedMovie in getWatchList() {
+            if (watchedMovie.id == movie.id) {
+                watched = true
+                break
+            }
+        }
+        return watched
+    }
 }
 
 struct LoggedMovie: Codable {
