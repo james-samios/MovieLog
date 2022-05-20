@@ -116,7 +116,7 @@ class DBConnector {
     }
     
     //======Favourite Movies=======
-    func getFavouriteMovies() -> [Movie]{
+    func getFavouriteMovies() -> [Movie]{ //Returns a list of the users favourited movies from USER DEFAULTS
         let defaults = UserDefaults.standard
         if let savedArrayData = defaults.value(forKey: "favourites") as? Data{
             if let array = try? PropertyListDecoder().decode(Array<Movie>.self, from: savedArrayData) {
@@ -140,6 +140,7 @@ class DBConnector {
     }
     
     func addFavouriteMovie(newMovie: Movie){
+        //Adds a favourited movie to the USER DEFAULTS favourites list
         let defaults = UserDefaults.standard
         var newList = getFavouriteMovies()
         for movie in newList {
@@ -157,6 +158,7 @@ class DBConnector {
     }
     
     func removeFavouriteMovie(newMovie: Movie){
+        //Adds a favourited movie to the USER DEFAULTS favourites list
         let defaults = UserDefaults.standard
         var newList = getFavouriteMovies()
         for (index, movie) in newList.enumerated() {
@@ -171,6 +173,7 @@ class DBConnector {
     }
     
     func isMovieFavourited(movie: Movie) -> Bool {
+        //Checks if a movie is favourited
         var favourited = false
         for favouritedMovie in getFavouriteMovies() {
             if (favouritedMovie.id == movie.id) {
@@ -183,6 +186,7 @@ class DBConnector {
     
     //======Logged Movies=======
     func getLoggedMovies() -> [LoggedMovie]{
+        //A USER DEFAULTS array of the LoggedMovie struct which contains a review, score and movie. Holds onto the movies a user has seen/logged
         let defaults = UserDefaults.standard
         if let savedArrayData = defaults.value(forKey: "logged") as? Data{
             if let array = try? PropertyListDecoder().decode(Array<LoggedMovie>.self, from: savedArrayData) {
@@ -196,6 +200,7 @@ class DBConnector {
     }
     
     func logNewMovie(newMovie: LoggedMovie){
+        //adds a new movie to the USER DEFAULTS logged array
         let defaults = UserDefaults.standard
         var newList = getLoggedMovies()
         for (index, movie) in newList.enumerated() {
@@ -206,6 +211,7 @@ class DBConnector {
         
         let watchList = getWatchList()
         for movie in watchList {
+            //If a movie is in the watchlist and it is logged, remove it from the watchlist (if it is logged you have seen it)
             if newMovie.movie.id == movie.id {
                 removeFromWatchList(newMovie: newMovie.movie)
             }
@@ -217,6 +223,7 @@ class DBConnector {
     }
     
     func removeLoggedMovie(newMovie: LoggedMovie){
+        //removes a new movie to the USER DEFAULTS logged array
         let defaults = UserDefaults.standard
         var newList = getLoggedMovies()
         for (index, movie) in newList.enumerated() {
@@ -230,6 +237,7 @@ class DBConnector {
     }
     
     func isMovieLogged(movie: Movie) -> Bool {
+        //Checks if a movie is in the LOGGED LIST
         var logged = false
         for loggedMovie in getLoggedMovies() {
             if (loggedMovie.movie.id == movie.id) {
@@ -242,10 +250,11 @@ class DBConnector {
     
     //======Watch List=======
     func getWatchList() -> [Movie]{
+        //Returns the movies in the USER DEFAULTS watchList
         let defaults = UserDefaults.standard
         if let savedArrayData = defaults.value(forKey: "watchList") as? Data{
             if let array = try? PropertyListDecoder().decode(Array<Movie>.self, from: savedArrayData) {
-                return array
+                return array.reversed()
             } else {
                 return []
             }
@@ -295,6 +304,7 @@ class DBConnector {
     }
     
     func isMovieInWatchlist(movie: Movie) -> Bool {
+        //Checks if a movie is in the watchlist
         var watched = false
         for watchedMovie in getWatchList() {
             if (watchedMovie.id == movie.id) {
@@ -306,6 +316,7 @@ class DBConnector {
     }
 }
 
+//LoggedMovie Struct
 struct LoggedMovie: Codable {
     var movie: Movie
     var summary: String

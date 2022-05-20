@@ -57,14 +57,14 @@ class SeenMovieController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //Before the view appears
         super.viewWillAppear(animated)
         if(movie != nil){
-            print("=====APPEARED======")
             onScreenLoad()
         }
     }
     
-    func onScreenLoad() {
+    func onScreenLoad() { //Toggle if the heart button is favourited
         let isFavourited : Bool = DBConnector.instance.isMovieFavourited(movie: movie!);
         if(!isFavourited){
             likeButton.tintColor = UIColor.lightGray
@@ -72,7 +72,6 @@ class SeenMovieController: UIViewController {
         else{
             likeButton.tintColor = UIColor.systemPink
         }
-        print("--\(isFavourited)--")
     }
     
     @objc func toggleFavourite(sender: UITapGestureRecognizer){
@@ -87,13 +86,14 @@ class SeenMovieController: UIViewController {
                 else{
                     likeButton.tintColor = UIColor.systemPink
                 }
+                //Toggle if the favourite is in the favourited list or not
                 DBConnector.instance.toggleFavourite(mode: isFavourited, movie: movie!)
                 
             }
         }
     }
     
-    @IBAction func editMovie(_ sender: UIButton) {
+    @IBAction func editMovie(_ sender: UIButton) { //If the edit button is selected
         if let vc = storyboard?.instantiateViewController(withIdentifier: "EditMovieController") as? EditMovieController {
             vc.setMovie(movie: movie)
             vc.currentRating = currentRating

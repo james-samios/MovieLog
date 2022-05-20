@@ -17,7 +17,7 @@ class WatchlistTableViewCell: UITableViewCell {
     @IBOutlet var movieGenre: UILabel!
     
     func setWatchlistCell (movie: Movie) {
-        print("========CELL============")
+        //Set the watchlist card values
         movieName.text = movie.title
         moviePoster = movie.setPoster(image: moviePoster)
         movieBlurb.text = movie.overview

@@ -78,6 +78,7 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func toggleWatchlist(sender: UITapGestureRecognizer){
+        //If the watchlist button is tapped toggle and add or remove to watchlist
         if sender.state == .ended {
             
             if(movie != nil){
@@ -97,14 +98,25 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveMovie(_ sender: UIButton) {
+        //Fired when the save button is pressed
             if(movie != nil){
                 let newMovie:LoggedMovie = LoggedMovie(movie: movie!, summary: movieComment.text!, rating: movieRating.text!)
                 DBConnector.instance.logNewMovie(newMovie: newMovie)
             }
-            _ = navigationController?.popViewController(animated: true)
+            _ = navigationController?.popToRootViewController(animated: true)
+        //set the tab to the log tab
             tabBarController!.selectedIndex = 3
             
-            
+        
+        //RESET ALL TABS BACK TO ROOT
+        if let tabVcs = navigationController?.tabBarController?.viewControllers {
+                for vc in tabVcs {
+                    if let navVc = vc as? UINavigationController {
+                        navVc.popToRootViewController(animated: false)
+                    }
+                }
+            }
+ 
     }
     
     /// Hide the keyboard when the user taps anywhere outside.
