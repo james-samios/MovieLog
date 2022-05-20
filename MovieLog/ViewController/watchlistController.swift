@@ -12,13 +12,23 @@ class WatchlistController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet var watchlistTableView: UITableView!
     
-    var watchlist : [String] = ["movie1", "movie2", "movie3"]
+    var watchlist : [Movie] = DBConnector.instance.getWatchList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        watchlist = DBConnector.instance.getWatchList()
         watchlistTableView.delegate = self
         watchlistTableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        watchlist = DBConnector.instance.getWatchList()
+        watchlistTableView.reloadData()
+        
+        print("========APPEARED===========")
+        print("Watchlist\(watchlist)")
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,7 +39,6 @@ class WatchlistController: UIViewController, UITableViewDelegate, UITableViewDat
         let movie = watchlist[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "WatchlistTableViewCell") as! WatchlistTableViewCell
-        
         cell.setWatchlistCell(movie: movie)
         
         return cell
@@ -38,7 +47,7 @@ class WatchlistController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SeenMovieController") as? SeenMovieController {
             //vc.poster = UIImage(named: logData[indexPath.row])
-            vc.currentTitle = watchlist[indexPath.row]
+//            vc.currentTitle = watchlist[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

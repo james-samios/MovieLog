@@ -48,7 +48,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "LogTableViewCell") as! LogTableViewCell
         
         cell.setLogCell(loggedMovie: movie)
-        
+        cell.movie = movie.movie
         cell.imgPoster = movie.movie.setPoster(image: cell.imgPoster)
         
         return cell

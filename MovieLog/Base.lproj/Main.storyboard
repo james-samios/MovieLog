@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qqn-rh-KQo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qqn-rh-KQo">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -698,7 +698,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1L-yH-M4M">
-                                                    <rect key="frame" x="101" y="40" width="259" height="15.666666666666664"/>
+                                                    <rect key="frame" x="101" y="40" width="259" height="17"/>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Blurb">
@@ -761,6 +761,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.99418855917574178" green="0.99418855917574178" blue="0.99418855917574178" alpha="0.17000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="btnHeart" destination="pdJ-eE-zx1" id="K14-mz-aY5"/>
                                             <outlet property="imgPoster" destination="m7f-ZH-TpH" id="pu1-Qf-QbV"/>
                                             <outlet property="lblGenre" destination="jhV-06-Xq8" id="7dY-6t-eOC"/>
                                             <outlet property="lblRating" destination="2Rk-rA-NcL" id="YbF-wl-mJe"/>
@@ -1058,6 +1059,7 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="imgWatchlist" destination="seF-CI-PR7" id="Bl6-47-gwv"/>
                         <outlet property="movieBlurb" destination="x6H-uv-JFP" id="JnN-b1-rEN"/>
                         <outlet property="movieComment" destination="KRl-6P-e7P" id="eIy-KJ-chV"/>
                         <outlet property="moviePoster" destination="QPz-24-eMI" id="1PL-q6-K6H"/>
@@ -1116,7 +1118,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5H-0g-F31">
-                                                    <rect key="frame" x="101" y="40" width="259" height="15.666666666666664"/>
+                                                    <rect key="frame" x="101" y="40" width="259" height="17"/>
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Blurb">

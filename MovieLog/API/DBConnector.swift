@@ -248,10 +248,10 @@ class DBConnector {
     func toggleWatchList(mode: Bool, movie: Movie){
         //Call this function from the favourite button and pass in a bool value to determine the state of the button
         if !mode {
-            addFavouriteMovie(newMovie: movie)
+            addToWatchList(newMovie: movie)
         }
         else {
-            removeFavouriteMovie(newMovie: movie)
+            removeFromWatchList(newMovie: movie)
         }
     }
     

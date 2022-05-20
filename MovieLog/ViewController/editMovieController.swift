@@ -16,6 +16,7 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     @IBOutlet var movieBlurb: UILabel!
     @IBOutlet var movieRating: UITextField!
     @IBOutlet var movieComment: UITextField!
+    @IBOutlet var imgWatchlist: UIImageView!
     
     var currentRating: String = ""
     var currentComment: String = ""
@@ -51,7 +52,66 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
         let dismissKbTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         dismissKbTap.cancelsTouchesInView = false
         view.addGestureRecognizer(dismissKbTap)
+        
+        //Add selection to watchlist button
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.toggleWatchlist))
+        imgWatchlist.addGestureRecognizer(tapGR)
+        imgWatchlist.isUserInteractionEnabled = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(movie != nil){
+            onScreenLoad()
+        }
+    }
+    
+    func onScreenLoad() { // Determine state of watchlist button
+        var isSelected : Bool = false;
+        for film in DBConnector.instance.getWatchList() {
+            print()
+            if film.id == movie?.id{
+                isSelected = true;
+            }
+        }
+        if(!isSelected){
+            imgWatchlist.tintColor = UIColor.lightGray
+        }
+        else{
+            imgWatchlist.tintColor = UIColor.systemPink
+        }
+    }
+    
+    @objc func toggleWatchlist(sender: UITapGestureRecognizer){
+        if sender.state == .ended {
+            
+            if(movie != nil){
+                var isWatched: Bool = false;
+                for film in DBConnector.instance.getWatchList() {
+                    print()
+                    if film.id == movie?.id{
+                        isWatched = true;
+                    }
+                }
+                
+                DBConnector.instance.toggleWatchList(mode: isWatched, movie: movie!)
+                print("=========PRINTED========")
+                if(isWatched){
+                    imgWatchlist.tintColor = UIColor.lightGray
+                    print("=========No Longer Favourited========")
+                }
+                else{
+                    print("=========Favourited========")
+                    imgWatchlist.tintColor = UIColor.systemPink
+                }
+                
+            }
+            else{
+                print("=========ISNULL========")
+            }
+        }
+    }
+    
     
     func setMovie(movie: Movie?) {
         if movie != nil {
