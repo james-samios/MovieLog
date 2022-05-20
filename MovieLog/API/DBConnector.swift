@@ -187,10 +187,9 @@ class DBConnector {
     func logNewMovie(newMovie: LoggedMovie){
         let defaults = UserDefaults.standard
         var newList = getLoggedMovies()
-        for movie in newList {
+        for (index, movie) in newList.enumerated() {
             if(newMovie.movie.id == movie.movie.id){
-                //Return if that movie is already logged
-                return;
+                newList.remove(at: index)
             }
         }
         
@@ -257,7 +256,7 @@ class DBConnector {
     
     func addToWatchList(newMovie: Movie){
         let defaults = UserDefaults.standard
-        var newList = getFavouriteMovies()
+        var newList = getWatchList()
         for movie in newList {
             if(newMovie.id == movie.id){
                 //Return if that movie is already in the watch list

@@ -78,7 +78,7 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
             imgWatchlist.tintColor = UIColor.lightGray
         }
         else{
-            imgWatchlist.tintColor = UIColor.systemPink
+            imgWatchlist.tintColor = UIColor.systemGreen
         }
     }
     
@@ -95,19 +95,13 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
                 }
                 
                 DBConnector.instance.toggleWatchList(mode: isWatched, movie: movie!)
-                print("=========PRINTED========")
                 if(isWatched){
                     imgWatchlist.tintColor = UIColor.lightGray
-                    print("=========No Longer Favourited========")
                 }
                 else{
-                    print("=========Favourited========")
-                    imgWatchlist.tintColor = UIColor.systemPink
+                    imgWatchlist.tintColor = UIColor.systemGreen
                 }
                 
-            }
-            else{
-                print("=========ISNULL========")
             }
         }
     }

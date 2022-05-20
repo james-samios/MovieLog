@@ -43,8 +43,9 @@ class SeenMovieController: UIViewController {
         movieRating.text = currentRating
         movieComment.text = currentComment
         movieYearGenre.text = currentYearGenre
-        moviePoster = movie!.setPoster(image: moviePoster)
+        
         if(movie != nil){
+            moviePoster = movie!.setPoster(image: moviePoster)
             onScreenLoad()
         }
     }
