@@ -47,7 +47,12 @@ class SeenMovieController: UIViewController {
         if(movie != nil){
             onScreenLoad()
         }
-        
+    }
+    
+    func setMovie(movie: Movie?) {
+        if movie != nil {
+            self.movie = movie
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

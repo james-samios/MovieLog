@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class EditMovieController: UIViewController {
+class EditMovieController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var moviePoster: UIImageView!
     @IBOutlet var movieTitle: UILabel!
@@ -47,6 +47,10 @@ class EditMovieController: UIViewController {
         }
         guard movie!.getGenres().indices.contains(0) else { return }
         movieTitle.text = movie?.getGenres()[0]
+        
+        let dismissKbTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        dismissKbTap.cancelsTouchesInView = false
+        view.addGestureRecognizer(dismissKbTap)
     }
     
     func setMovie(movie: Movie?) {
@@ -66,5 +70,17 @@ class EditMovieController: UIViewController {
             
 //            self.navigationController?.pushViewController(vc, animated: true)
 //        }
+    }
+    
+    /// Hide the keyboard when the user taps anywhere outside.
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    /// Hide the keyboard when the user taps the "return" key.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        movieRating.resignFirstResponder()
+        movieComment.resignFirstResponder()
+        return true
     }
 }

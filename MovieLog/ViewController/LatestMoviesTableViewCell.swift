@@ -56,5 +56,12 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 110, height: 400)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let score = movies[indexPath.row]
+        AppDelegate.instance.sendToMovieController(movie: score,
+                                                   navigationController: self.superview?.findViewController()?.navigationController,
+                                                   storyboard: self.superview?.findViewController()?.storyboard)
+    }
 }
 

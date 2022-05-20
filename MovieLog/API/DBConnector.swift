@@ -219,6 +219,17 @@ class DBConnector {
         defaults.set(try? PropertyListEncoder().encode(newList), forKey: "favourites")
     }
     
+    func isMovieLogged(movie: Movie) -> Bool {
+        var logged = false
+        for loggedMovie in getLoggedMovies() {
+            if (loggedMovie.movie.id == movie.id) {
+                logged = true
+                break
+            }
+        }
+        return logged
+    }
+    
     //======Watch List=======
     func getWatchList() -> [Movie]{
         let defaults = UserDefaults.standard

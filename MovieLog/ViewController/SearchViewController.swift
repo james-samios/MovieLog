@@ -83,12 +83,11 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Table row at \(indexPath) selected")
         tableView.deselectRow(at: indexPath, animated: true)
         let score = movies[indexPath.row]
-        let edit = self.storyboard?.instantiateViewController(withIdentifier: "EditMovieController") as! EditMovieController
-        edit.setMovie(movie: score)
-        self.navigationController?.pushViewController(edit, animated: true)
+        AppDelegate.instance.sendToMovieController(movie: score,
+                                                   navigationController: self.navigationController!,
+                                                   storyboard: self.storyboard!)
     }
 }
 

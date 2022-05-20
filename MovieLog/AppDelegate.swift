@@ -28,6 +28,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func getGenreNameById(id: Int) -> String {
         return genres[id] ?? "N/A"
     }
+    
+    func sendToMovieController(movie: Movie, navigationController: UINavigationController?, storyboard: UIStoryboard?) {
+        if (DBConnector.instance.isMovieLogged(movie: movie)) { // Seen Controller
+            let seen = storyboard?.instantiateViewController(withIdentifier: "SeenMovieController") as! SeenMovieController
+            seen.setMovie(movie: movie)
+            navigationController?.pushViewController(seen, animated: true)
+        } else { // Edit Controller
+            let edit = storyboard?.instantiateViewController(withIdentifier: "EditMovieController") as! EditMovieController
+            edit.setMovie(movie: movie)
+            navigationController?.pushViewController(edit, animated: true)
+        }
+    }
 
     // MARK: UISceneSession Lifecycle
 
