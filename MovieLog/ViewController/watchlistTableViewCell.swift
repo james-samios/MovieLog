@@ -12,6 +12,9 @@ class WatchlistTableViewCell: UITableViewCell {
     
     @IBOutlet var moviePoster: UIImageView!
     @IBOutlet var movieName: UILabel!
+    @IBOutlet var movieBlurb: UILabel!
+    @IBOutlet var movieRating: UILabel!
+    @IBOutlet var movieGenre: UILabel!
     
     func setWatchlistCell (movie: Movie) {
         print("========CELL============")
