@@ -18,14 +18,19 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     @IBOutlet var movieComment: UITextField!
     @IBOutlet var imgWatchlist: UIImageView!
     
+    @IBOutlet var logMovieButton: UIButton!
+    
     var currentRating: String = ""
     var currentComment: String = ""
     
-    var movie: Movie? = nil
+    private var movie: Movie? = nil
     let errorMsg = "N/A"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logMovieButton.layer.cornerRadius = 15
+        logMovieButton.titleLabel?.textColor = .white
         
         self.title = movie?.title ?? "Error when loading movie!"
         

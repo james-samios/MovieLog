@@ -59,15 +59,7 @@ class LogMovieViewController: UIViewController, UITableViewDelegate, UITableView
         if let vc = storyboard?.instantiateViewController(withIdentifier: "SeenMovieController") as? SeenMovieController {
             let loggedMovie = LoggedMovies[indexPath.row]
             let movie = loggedMovie.movie
-            vc.movie = movie
-            vc.currentTitle = movie.title
-            vc.currentComment = loggedMovie.summary
-            vc.currentRating = loggedMovie.rating
-            vc.currentBlurb = movie.overview!
-            
-            if(movie.getGenres()[0] != nil) {
-                vc.currentYearGenre = "\(movie.getReleaseYear()) - \(movie.getGenres()[0]!)"
-            }
+            vc.setMovie(movie: movie)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

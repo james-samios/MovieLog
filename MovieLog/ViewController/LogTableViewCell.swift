@@ -29,7 +29,6 @@ class LogTableViewCell: UITableViewCell {
         lblReview.text = loggedMovie.summary
         lblRating.text = loggedMovie.rating
         
-        
         //BAXTER RC
         var isFavourited : Bool = false;
         for film in DBConnector.instance.getFavouriteMovies() {
@@ -38,11 +37,13 @@ class LogTableViewCell: UITableViewCell {
                 isFavourited = true;
             }
         }
-        if(!isFavourited){
+        if !isFavourited {
             btnHeart.tintColor = UIColor.lightGray
+            btnHeart.image = UIImage(systemName: "heart")
         }
-        else{
+        else {
             btnHeart.tintColor = UIColor.systemPink
+            btnHeart.image = UIImage(systemName: "heart.fill")
         }
         //BAXTER END RC
         
@@ -67,13 +68,14 @@ class LogTableViewCell: UITableViewCell {
                 }
                 
                 DBConnector.instance.toggleFavourite(mode: isFavourited, movie: movie!)
-                if(isFavourited){
+                if isFavourited {
                     btnHeart.tintColor = UIColor.lightGray
+                    btnHeart.image = UIImage(systemName: "heart")
                 }
-                else{
+                else {
                     btnHeart.tintColor = UIColor.systemPink
+                    btnHeart.image = UIImage(systemName: "heart.fill")
                 }
-                
             }
         }
     }

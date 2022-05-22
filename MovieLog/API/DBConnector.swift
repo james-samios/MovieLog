@@ -248,6 +248,17 @@ class DBConnector {
         return logged
     }
     
+    func getLoggedMovie(movie: Movie) -> LoggedMovie? {
+        var loggedMovie: LoggedMovie? = nil
+        for logMovie in getLoggedMovies() {
+            if (logMovie.movie.id == movie.id) {
+                loggedMovie = logMovie
+                break
+            }
+        }
+        return loggedMovie
+    }
+    
     //======Watch List=======
     func getWatchList() -> [Movie]{
         //Returns the movies in the USER DEFAULTS watchList
