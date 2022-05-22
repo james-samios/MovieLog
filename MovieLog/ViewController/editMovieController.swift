@@ -18,15 +18,23 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     @IBOutlet var movieComment: UITextField!
     @IBOutlet var imgWatchlist: UIImageView!
     
+    @IBOutlet var logMovieButton: UIButton!
+    
     var currentRating: String = ""
     var currentComment: String = ""
     
-    var movie: Movie? = nil
+    private var movie: Movie? = nil
     let errorMsg = "N/A"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Round our log movie button and set the text colour to white for a nice ui look.
+        logMovieButton.layer.cornerRadius = 15
+        logMovieButton.titleLabel?.textColor = .white
+        
+        // Set our labels to the movie information.
+        // The movie is loaded before the view is pushed.
         self.title = movie?.title ?? "Error when loading movie!"
         
         movieBlurb.text = movie?.overview ?? errorMsg
@@ -49,11 +57,12 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
         guard movie!.getGenres().indices.contains(0) else { return }
         movieTitle.text = movie?.getGenres()[0]
         
+        // Hide keyboard when user taps outside of it.
         let dismissKbTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         dismissKbTap.cancelsTouchesInView = false
         view.addGestureRecognizer(dismissKbTap)
         
-        //Add selection to watchlist button
+        // Add selection to watchlist button
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.toggleWatchlist))
         imgWatchlist.addGestureRecognizer(tapGR)
         imgWatchlist.isUserInteractionEnabled = true
@@ -61,15 +70,15 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if(movie != nil){
+        if movie != nil {
             onScreenLoad()
         }
     }
     
     func onScreenLoad() { // Determine state of watchlist button
-        let isSelected : Bool = DBConnector.instance.isMovieInWatchlist(movie: movie!);
+        let isSelected: Bool = DBConnector.instance.isMovieInWatchlist(movie: movie!);
        
-        if(!isSelected){
+        if !isSelected {
             imgWatchlist.tintColor = UIColor.lightGray
         }
         else{
@@ -81,7 +90,7 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
         //If the watchlist button is tapped toggle and add or remove to watchlist
         if sender.state == .ended {
             
-            if(movie != nil){
+            if movie != nil {
                 let isWatched: Bool = DBConnector.instance.isMovieInWatchlist(movie: movie!);
                 
                 DBConnector.instance.toggleWatchList(mode: isWatched, movie: movie!)
@@ -90,7 +99,7 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+    /// Function to set the movie to display in this page. Called before the view is loaded.
     func setMovie(movie: Movie?) {
         if movie != nil {
             self.movie = movie
@@ -98,25 +107,24 @@ class EditMovieController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func saveMovie(_ sender: UIButton) {
-        //Fired when the save button is pressed
-            if(movie != nil){
-                let newMovie:LoggedMovie = LoggedMovie(movie: movie!, summary: movieComment.text!, rating: movieRating.text!)
-                DBConnector.instance.logNewMovie(newMovie: newMovie)
-            }
-            _ = navigationController?.popToRootViewController(animated: true)
-        //set the tab to the log tab
-            tabBarController!.selectedIndex = 3
+        // Fired when the save button is pressed
+        if movie != nil {
+            let newMovie: LoggedMovie = LoggedMovie(movie: movie!, summary: movieComment.text!, rating: movieRating.text!)
+            DBConnector.instance.logNewMovie(newMovie: newMovie)
+        }
+        _ = navigationController?.popToRootViewController(animated: true)
+        // Set the tab to the log tab
+        tabBarController!.selectedIndex = 3
             
         
-        //RESET ALL TABS BACK TO ROOT
+        // RESET ALL TABS BACK TO ROOT
         if let tabVcs = navigationController?.tabBarController?.viewControllers {
-                for vc in tabVcs {
-                    if let navVc = vc as? UINavigationController {
-                        navVc.popToRootViewController(animated: false)
-                    }
+            for vc in tabVcs {
+                if let navVc = vc as? UINavigationController {
+                    navVc.popToRootViewController(animated: false)
                 }
             }
- 
+        }
     }
     
     /// Hide the keyboard when the user taps anywhere outside.

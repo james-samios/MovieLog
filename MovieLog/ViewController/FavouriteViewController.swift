@@ -10,30 +10,17 @@ import UIKit
 import SwiftUI
 
 
-class FavouriteViewController: UIViewController {
+class FavouriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    var favouriteMovies: [Movie] = []
+    var favouriteMovies: [Movie] = [] // Array of favourite movies that is loaded every time the view appears.
     @IBOutlet var favouriteTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.favouriteMovies = DBConnector.instance.getFavouriteMovies()
-        self.favouriteTableView.reloadData()
-        
+        self.favouriteMovies = DBConnector.instance.getFavouriteMovies() // Load the favourite movies into the local variable.
+        self.favouriteTableView.reloadData() // Reload table data.
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.favouriteMovies = DBConnector.instance.getFavouriteMovies()
-        self.favouriteTableView.reloadData()
-    }
-    
-
-}
-
-
-
-extension FavouriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favouriteMovies.count
     }
@@ -54,12 +41,12 @@ extension FavouriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let score = favouriteMovies[indexPath.row]
+        // Send to controller based on logged status.
         AppDelegate.instance.sendToMovieController(movie: score,
                                                    navigationController: self.navigationController!,
                                                    storyboard: self.storyboard!)
     }
 }
-
 
 class FavouriteViewCell: UITableViewCell {
     @IBOutlet var imgPoster: UIImageView!

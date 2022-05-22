@@ -19,7 +19,9 @@ class RecommendedMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate,
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        // Load the movies from database.
         loadMovies()
+        // Add the notification observer so the cells can be updated when the recommended lists are changed.
         NotificationCenter.default.addObserver(self, selector: #selector(loadList(notification:)), name: NSNotification.Name(rawValue: "loadRecommended"), object: nil)
     }
     
@@ -30,7 +32,7 @@ class RecommendedMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate,
     private func loadMovies() {
         DBConnector.instance.getRecommendedMovies(callback: {
             movies in
-            if (movies.count == 0) {
+            if (movies.count == 0) { // If there are no recommended movies, display similar ones instead.
                 DBConnector.instance.getSimilarMovies(callback: {
                     similar in
                     self.movies = similar
@@ -60,7 +62,7 @@ class RecommendedMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recommendedMovieCell", for: indexPath) as! RecommendedMovieCell
         let score = movies[indexPath.row]
-        cell.posterImg = score.setPoster(image: cell.posterImg)
+        cell.posterImg = score.setPoster(image: cell.posterImg) // Set poster image.
         return cell
     }
     

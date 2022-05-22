@@ -42,12 +42,8 @@ class WatchlistController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let movie = watchlist[indexPath.row]
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "SeenMovieController") as? SeenMovieController {
-            vc.setMovie(movie: movie)
-            vc.currentBlurb = movie.overview!
-            vc.currentRating = String(movie.vote_average)
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        
+        AppDelegate.instance.sendToMovieController(movie: movie,
+                                                   navigationController: self.navigationController!,
+                                                   storyboard: self.storyboard!)
     }
 }
