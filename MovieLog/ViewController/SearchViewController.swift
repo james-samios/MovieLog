@@ -18,14 +18,16 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Keyboard dismissal recogniser registration.
         let dismissKbTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         dismissKbTap.cancelsTouchesInView = false
         view.addGestureRecognizer(dismissKbTap)
         
+        // Register the target for when the text is changed in the search field.
         searchBar.addTarget(self, action: #selector(onTextChange(_:)), for: .editingChanged)
         searchBar.delegate = self
 
-        // Set its data source to this class.
+        // Set the table's data source to this class.
         table.dataSource = self
         table.delegate = self
     
@@ -33,15 +35,17 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     
     /// Search for movies when text field is modified, and update the table cells.
     @objc func onTextChange(_ sender: UITextField) {
-        if (!(searchBar.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)) {
+        if (!(searchBar.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? true)) { // If there is actually a search, and not just an empty string or white spaces.
             DBConnector.instance.searchForMovies(search: searchBar.text!, callback: {
                 apiMovies in
                 self.movies = apiMovies
                 DispatchQueue.main.async {
+                    // Reload data on main thread.
                     self.table.reloadData()
                 }
             })
         } else {
+            // No movies found, just reload table with empty array.
             self.movies = []
             self.table.reloadData()
         }

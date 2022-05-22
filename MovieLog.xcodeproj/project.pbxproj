@@ -14,7 +14,6 @@
 		1A5D1C632838790300AF5A5C /* EditMovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1C572838790300AF5A5C /* EditMovieController.swift */; };
 		1A5D1C642838790300AF5A5C /* LatestMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1C582838790300AF5A5C /* LatestMoviesTableViewCell.swift */; };
 		1A5D1C652838790300AF5A5C /* LogMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1C592838790300AF5A5C /* LogMovieViewController.swift */; };
-		1A5D1C662838790300AF5A5C /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1C5A2838790300AF5A5C /* GenreTableViewCell.swift */; };
 		1A5D1C672838790300AF5A5C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1C5B2838790300AF5A5C /* HomeViewController.swift */; };
 		1A5D1C682838790300AF5A5C /* RecommendedMoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1C5C2838790300AF5A5C /* RecommendedMoviesTableViewCell.swift */; };
 		1A5D1C692838790300AF5A5C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D1C5D2838790300AF5A5C /* SearchViewController.swift */; };
@@ -65,7 +64,6 @@
 		1A5D1C572838790300AF5A5C /* EditMovieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMovieController.swift; sourceTree = "<group>"; };
 		1A5D1C582838790300AF5A5C /* LatestMoviesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LatestMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		1A5D1C592838790300AF5A5C /* LogMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogMovieViewController.swift; sourceTree = "<group>"; };
-		1A5D1C5A2838790300AF5A5C /* GenreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		1A5D1C5B2838790300AF5A5C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1A5D1C5C2838790300AF5A5C /* RecommendedMoviesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedMoviesTableViewCell.swift; sourceTree = "<group>"; };
 		1A5D1C5D2838790300AF5A5C /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				1A065EC1282A41C000654F51 /* Model */,
 				1AC9A5E82828C4C300A1B35A /* Resources */,
 				1AC9A5E72828C4BE00A1B35A /* API */,
-				1AC9A5E62828C4B800A1B35A /* Utility */,
 				1AC9A5E52828C49300A1B35A /* ViewController */,
 				1AC7751C2821044A00FEF92A /* AppDelegate.swift */,
 				1AC7751E2821044A00FEF92A /* SceneDelegate.swift */,
@@ -187,7 +184,6 @@
 			children = (
 				1A5D1C572838790300AF5A5C /* EditMovieController.swift */,
 				1A5D1C562838790300AF5A5C /* FavouriteViewController.swift */,
-				1A5D1C5A2838790300AF5A5C /* GenreTableViewCell.swift */,
 				1A5D1C5B2838790300AF5A5C /* HomeViewController.swift */,
 				1A5D1C582838790300AF5A5C /* LatestMoviesTableViewCell.swift */,
 				1A5D1C592838790300AF5A5C /* LogMovieViewController.swift */,
@@ -199,13 +195,6 @@
 				1A5D1C552838790300AF5A5C /* WatchlistTableViewCell.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		1AC9A5E62828C4B800A1B35A /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utility;
 			sourceTree = "<group>";
 		};
 		1AC9A5E72828C4BE00A1B35A /* API */ = {
@@ -383,7 +372,6 @@
 				1AC7751F2821044A00FEF92A /* SceneDelegate.swift in Sources */,
 				1A5D1C622838790300AF5A5C /* FavouriteViewController.swift in Sources */,
 				1A5D1C602838790300AF5A5C /* LogTableViewCell.swift in Sources */,
-				1A5D1C662838790300AF5A5C /* GenreTableViewCell.swift in Sources */,
 				1A5D1C652838790300AF5A5C /* LogMovieViewController.swift in Sources */,
 				1A5D1C692838790300AF5A5C /* SearchViewController.swift in Sources */,
 				1A5D1C632838790300AF5A5C /* EditMovieController.swift in Sources */,

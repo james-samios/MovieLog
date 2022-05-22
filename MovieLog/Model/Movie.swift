@@ -77,3 +77,12 @@ struct Movie: Codable {
         return image
     }
 }
+
+/// LoggedMovie
+/// This sturct is stored in an array within User Defaults.
+/// It contains information submitted about a logged movie.
+struct LoggedMovie: Codable {
+    var movie: Movie
+    var summary: String
+    var rating: String
+}

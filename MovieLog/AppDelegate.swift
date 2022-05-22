@@ -10,6 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    // Shared instance of the AppDelegate for obtaining Genres and the sample Movie object.
     static let instance = UIApplication.shared.delegate as! AppDelegate
     
     var genres = [Int: String]()
@@ -17,18 +18,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        // Load our genres locally so we don't have to keep asking the database for every single movie.
         DBConnector.instance.getGenres(callback: { genres in
             self.genres = genres
         })
         
+        // Add in the sample movie here as the placeholder for a fresh launch of the app.
         self.sampleMovie = Movie(id: 68721, title: "Iron Man 3", overview: "When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.", vote_average: 6.9, vote_count: 19440, poster_path: "/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg", release_date: "2013-04-18", original_language: "en", genre_ids: [28, 12, 878])
         return true
     }
     
+    /// Gets the plaintext name for a Genre by its given ID.
+    /// - Parameters:
+    ///     - id: The ID of the genre to retrieve
+    /// - Returns: The genre's plaintext value
     func getGenreNameById(id: Int) -> String {
         return genres[id] ?? "N/A"
     }
     
+    /// Helper function to send the user to a movie controller based on the user's log book.
+    /// - Parameters;
+    ///     - movie:  The movie to be viewed.
+    ///     - navigationController: The navigation controller of the current view
+    ///     - storyboard: The storyboard class from the current view.
     func sendToMovieController(movie: Movie, navigationController: UINavigationController?, storyboard: UIStoryboard?) {
         if (DBConnector.instance.isMovieLogged(movie: movie)) { // Seen Controller
             let seen = storyboard?.instantiateViewController(withIdentifier: "SeenMovieController") as! SeenMovieController
@@ -58,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension UIView {
+    /// Helper function to get the UIViewController from the current UIView.
     func findViewController() -> UIViewController? {
         if let nextResponder = self.next as? UIViewController {
             return nextResponder

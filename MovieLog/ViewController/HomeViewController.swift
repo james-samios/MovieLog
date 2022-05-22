@@ -12,12 +12,13 @@ class HomeViewController: UIViewController {
     @IBOutlet var latestMoviesTable: UITableView!
     @IBOutlet var recommendedMoviesTable: UITableView!
 
-    let latestMoviesSource = LatestMovieSource()
-    let recommendedMoviesSource = RecommendedMovieSource()
+    let latestMoviesSource = LatestMovieSource() // Data source for Latest Movies Table
+    let recommendedMoviesSource = RecommendedMovieSource() // Data source for Recommended Movies Table
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // Assign the table's data sources.
         self.latestMoviesTable.dataSource = self.latestMoviesSource
         self.recommendedMoviesTable.dataSource = self.recommendedMoviesSource
     }
@@ -26,6 +27,8 @@ class HomeViewController: UIViewController {
         super.viewDidAppear(animated)
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {
             timer in
+            // Send the notification to the recommended movies table collection view to update the rows.
+            // We do not need to update "Latest Movies".
             NotificationCenter.default.post(name: NSNotification.Name("loadRecommended"), object: nil)
         })
     }

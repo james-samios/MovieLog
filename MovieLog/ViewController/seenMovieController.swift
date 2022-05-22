@@ -34,10 +34,12 @@ class SeenMovieController: UIViewController {
         editButton.layer.cornerRadius = 15
         editButton.titleLabel?.textColor = .white
         
+        // Get LoggedMovie data for current rating and comment.
         let loggedMovie = DBConnector.instance.getLoggedMovie(movie: self.movie!)
         currentRating = loggedMovie?.rating ?? errorMsg
         currentComment = loggedMovie?.summary ?? errorMsg
         
+        // Set labels to movie information.
         self.title = movie?.title ?? "Error when loading movie!"
         
         movieBlurb.text = movie?.overview ?? errorMsg
@@ -68,7 +70,7 @@ class SeenMovieController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //Before the view appears
         super.viewWillAppear(animated)
-        if(movie != nil){
+        if movie != nil {
             onScreenLoad()
         }
     }
@@ -85,20 +87,20 @@ class SeenMovieController: UIViewController {
         }
     }
     
+    /// Toggles a movie as the favourite one.
     @objc func toggleFavourite(sender: UITapGestureRecognizer){
         if sender.state == .ended {
-            
-            if(movie != nil){
+            if movie != nil {
                 let isFavourited: Bool = DBConnector.instance.isMovieFavourited(movie: movie!);
-                if(isFavourited){
+                if isFavourited {
                     likeButton.tintColor = UIColor.lightGray
                     likeButton.image = UIImage(systemName: "heart")
                 }
-                else{
+                else {
                     likeButton.tintColor = UIColor.systemPink
                     likeButton.image = UIImage(systemName: "heart.fill")
                 }
-                //Toggle if the favourite is in the favourited list or not
+                // Toggle if the favourite is in the favourited list or not
                 DBConnector.instance.toggleFavourite(mode: isFavourited, movie: movie!)
                 
             }

@@ -14,14 +14,18 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        // Assign delegate and data source to this class.
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        // Load the latest movies.
         DBConnector.instance.getLatestMovies(callback: {
             movies in
+            // Set them to the local movies array.
             self.movies = movies
             DispatchQueue.main.async {
+                // Reload the data on the main thread.
                 self.collectionView.reloadData()
             }
         })
@@ -40,16 +44,12 @@ class LatestMoviesTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestMovieCell", for: indexPath) as! LatestMovieCell
-        
-        
-        let posterView = cell.posterImg!
         guard movies.indices.contains(indexPath.row) else {
-            posterView.kf.indicatorType = .activity
-            cell.posterImg = posterView
+            // don't set the image to anything.
             return cell
         }
         let score = movies[indexPath.row]
-        cell.posterImg = score.setPoster(image: cell.posterImg)
+        cell.posterImg = score.setPoster(image: cell.posterImg) // set the poster image.
         return cell
     }
     

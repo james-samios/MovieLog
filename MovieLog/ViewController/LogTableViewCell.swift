@@ -16,8 +16,10 @@ class LogTableViewCell: UITableViewCell {
     @IBOutlet var lblRating: UILabel!
     @IBOutlet var lblGenre: UILabel!
     @IBOutlet var btnHeart: UIImageView!
-    var movie:Movie!
-    //TO BE CHANGED TO A METHOD THAT USES Movie AS A PARAMETER
+    
+    var movie: Movie!
+    
+    /// Updates the cell based on a LoggedMovie.
     func setLogCell(loggedMovie: LoggedMovie) {
         
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.toggleFavourite))
@@ -29,7 +31,6 @@ class LogTableViewCell: UITableViewCell {
         lblReview.text = loggedMovie.summary
         lblRating.text = loggedMovie.rating
         
-        //BAXTER RC
         var isFavourited : Bool = false;
         for film in DBConnector.instance.getFavouriteMovies() {
             print()
@@ -45,15 +46,12 @@ class LogTableViewCell: UITableViewCell {
             btnHeart.tintColor = UIColor.systemPink
             btnHeart.image = UIImage(systemName: "heart.fill")
         }
-        //BAXTER END RC
         
         guard movie.getGenres()[0] == nil
         else {
             lblGenre.text = movie.getGenres()[0]
             return
         }
-        
-        
     }
     
     @objc func toggleFavourite(sender: UITapGestureRecognizer){
