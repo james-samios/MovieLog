@@ -7,4 +7,4 @@ An app to search, save and favourite any movie!
 Group task for University of Technology Sydney. 
 
 Any account / API key has since been deactivated. 
-
+Simply edit the API key found [here](https://github.com/james-samios/MovieLog/blob/main/MovieLog/API/DBConnector.swift) at line 27. 
